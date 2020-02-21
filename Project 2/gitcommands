@@ -1,0 +1,33 @@
+$ git init : initialises github with your project
+
+$ git status : returns a list of file statuses, 
+
+$ git add 'file name' : stages a file name, Adds the file to git hub
+
+$ git add . :
+
+$ git add *.html : stages all files that end with .html
+
+$ git commit : saves changes made to github. Opens a window for comment
+
+$ git commit -m "Some message" : saves the changes made with a comment.
+
+$ git commit -a -m 'some message' : stages the file and commits the changes with a message
+
+------REMOTE CONNECTIONS---
+
+$ git remote : returns all remote connections
+
+$ git clone |*url*| : clones a remote repository into your local machine
+
+$ git remote -v : displays remote connection urls
+
+$ git fetch origin : fetch repository, but doesnt add the updates to your work
+
+$ git pull origin : fetch repository and merges them together with your work
+
+$ git push origin <!--branch-->{master} : pushes your updates to the remote repository master.
+
+
+
+
