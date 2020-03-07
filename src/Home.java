@@ -15,6 +15,10 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
         initComponents();
+        setTitle("Home");
+        setResizable(false);
+        setSize(1350, 700);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -32,12 +36,10 @@ public class Home extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -49,9 +51,19 @@ public class Home extends javax.swing.JFrame {
         jMenu1.setText("Manage Students");
 
         jMenuItem1.setText("Add Student");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Veiw Student");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem7.setText("Edit Student");
@@ -61,9 +73,6 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem7);
-
-        jMenuItem3.setText("Delete Student");
-        jMenu1.add(jMenuItem3);
 
         jMenuBar1.add(jMenu1);
 
@@ -77,9 +86,6 @@ public class Home extends javax.swing.JFrame {
 
         jMenuItem10.setText("Edit Task");
         jMenu2.add(jMenuItem10);
-
-        jMenuItem11.setText("Delete Task");
-        jMenu2.add(jMenuItem11);
 
         jMenuBar1.add(jMenu2);
 
@@ -111,7 +117,24 @@ public class Home extends javax.swing.JFrame {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
+        EditStudent es = new EditStudent();
+        es.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+         // TODO add your handling code here:
+         StudentInfo st = new StudentInfo();
+         st.setVisible(true);
+         this.dispose();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        ViewStudents vs = new ViewStudents();
+        vs.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,9 +178,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
