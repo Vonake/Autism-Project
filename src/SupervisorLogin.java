@@ -21,7 +21,7 @@ public class SupervisorLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setTitle("Supervisor Login");
         setResizable(false);
-        setSize(650,350);
+        setSize(650, 350);
     }
 
     /**
@@ -124,17 +124,18 @@ public class SupervisorLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:        
         //         Home mdi = new Home();
         //         mdi.setVisible(true);
         //         this.dispose();
-        String uname = txt_username.getText();
-        String pword = pwd_password.getText();
-        if (uname.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Input Username");
-        } else if (pword.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Input Password");
-        } else {
+        String uname = txt_username.getText().trim();
+        String pword = pwd_password.getText().trim();
+
+        Validator v = new Validator();
+        String[] uname_valid = v.nameValidator(uname, "username");
+        String[] pword_valid = v.passwordValidator(pword);
+
+        if (uname_valid[0] == "true" && pword_valid[0] == "true") {
             Database db = new Database();
             boolean attemptLogin = db.Login(uname, pword);
             if (attemptLogin == true) {
@@ -142,9 +143,24 @@ public class SupervisorLogin extends javax.swing.JFrame {
                 mdi.setVisible(true);
                 this.dispose();
             } else {
-                JOptionPane.showMessageDialog(null, "Username/Pasword incorrect\n un " + uname + "\npw " + pword);
+                v.popup("Username/Pasword incorrect");
+//                JOptionPane.showMessageDialog(null, "Username/Pasword incorrect\n un " + uname + "\npw " + pword);
+            }
+        } else {
+            if (uname_valid[0] == "false") {
+                v.popup(uname_valid[1]);
+            }
+            if (pword_valid[0] == "false") {
+                v.popup(pword_valid[1]);
             }
         }
+
+        /* if (uname.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Input Username");
+        } else if (pword.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Input Password");
+        } else {*/
+//        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txt_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usernameActionPerformed

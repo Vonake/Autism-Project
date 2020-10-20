@@ -1,0 +1,239 @@
+Vipi Sir
+poa poa. nimefika apa
+
+Imerun ...
+
+Mimi ndo nko na upuzi nlisahau izi vitu
+
+Nimeona ivo, aki na ati tulisoma java na wew alafu ushindwe kurun program
+
+Haha nko refreshed sasa katambe, nmecheki pia home page iko na maneno,
+
+
+Hizi ni icons tu umeseti ama rada?
+
+EE. Nimeunda User interface ikae supu kwanza. Tutaanza na add Student 
+Alafu kwa homepage add student itakuwa inadisplay how many students are theree
+
+Sasa tanze kuweka logic. 
+step 1 : 
+name all variables za add student form.
+narename just one alafu umalizie izo zingine, fiti? chonjo
+
+Malizia izo zingine
+
+Ama age ikuweje? txt ama int/?
+Any can do coz tutaandika validation yetu. but for uniformity of code wacha ikuwe txt
+poa
+
+Done
+
+Good .
+Step 2. Implement 
+
+Savee bu butktioasni kuna mtu anabisha
+nishow ukiwa ready
+
+SAve nimesave
+dakikamoja nipatiane kitu nikam
+
+Poa, nishtue ukirudi
+Nimerudi
+
+Poa ebu nicopy kitu kiasi chonjo,
+
+tuendelee
+fiti.
+
+Step 2 : Implementing save button.
+i. Add event Listener to button = done
+ii. Get form instance variables = done
+iii. Validate for length, type
+iv. Success validation proceed to database
+v. Fail validation display error
+
+nafanya i.
+ii. complete for the remaining fields
+
+for age we'll use get text pia ama?
+tutatumia getText(). Java ina asume unajua kufanya convertion.Kila kitu ni string
+
+SAfi
+
+shrtcut ya kuonesha izo variables ilikuwa???
+
+tusonge, nibonyeze ctrl S?
+
+ctrl + space ndio ya shrtcut?
+ 
+ya kuleta izo options. ooh na kusave ndio s ee fiti
+
+Step two. Validation.
+Validation i prefer ikuwe a class on its own ndiyo nisirudie rudie code.
+Create a class called Validator
+bro changamka
+apa tu chini ya hii button event?
+Apana. apa
+safi
+hii class itakuwa  na methods zinarudisha either true or false.wacha niandike moja uone.
+
+tuko pamoja ama nimekimbia sana
+
+Umekimbia but nta catch up.. 
+
+Okay. This part
+inatupea access to our validator class
+
+apo tuko sawa? jabisa
+fiti.
+
+This part
+Method ina angailia if name imeandikwa iko poa. ina asume that the name is invalid.Tuko sawa mpaka apo?
+
+Ukomteja
+niko on na telkom. nkuskumia namba yenye n ko na07yo pia iko off
+0775 05 32 15
+
+this variable is this from our validator
+tuko pamoja? yup
+
+sawa. Tutest na empty. Run Code
+
+HIo erro message naona ni kama umeeka the wrong place
+EE. nimeona error pia, ikosoe
+Iko chonjo
+
+Tuweke if name ni numbers ikatae
+nita modify method inipatie message na true/false.
+nitatumia Array. Sawa?poa net issues
+
+Array inaweza hold more than one item. imeshika message na status. Tuko pamoja? yup
+fiti7
+
+Tuko pamoja?niko fiti
+
+tumeweka code ya kureuse. hatutaandika mingi tena
+Run code alafu niexplain
+
+tutacorect izo error apo kwa validator
+Any Question? spaces pia ni characters
+ee. but tutaondoa spaces. We do it this way. 
+Toa izo zingine zote chhonjo
+imerun? cheki iko fine
+
+fiti. sasa tunavalidate second name
+Tumevailidate second name already!
+
+Test
+
+then validate all of the fields with the nameValidator
+
+Kwanza tuambie validator yetu what name it is validating
+
+to validate like age, tutasema
+String[] age_valid = v.nameValidator(age,"age");
+
+then chek what is at position 0
+if(age_valid[0] == "true")
+
+else
+error
+
+nakimbia sana? niko rada but apo  type ndio natry kushika izo umeandd na pia izi first na second,, maliza niadd up
+nameValidator tumeitumia kuvlidate firstname na secondname
+but sasa ikirudisha message hatukuwa tunajua ni field gani uko na error
+sasa first inaongeza kwa error message tujue ni error ya first name
+same to second
+nmreget. run code
+
+Hatuwezi tumia && mara more than two?
+
+We can. remember validator inarudisha postion[0] = status, position[1] message. angalia if ulispecify position kwa if
+
+Tuendelee though izo validation zitaleta kizungu places zingine
+Iyo validator ni ya names peke! ya age na email na phone tutaandika as its own method. I wass testing nione if tuko amoja
+sasa asume email ni fourth name. Validate it
+
+tuko pamoja? niko . Unaelewa what unadu? yup. Fiti. Sasa tutaandika validator ya email na phone. nifungue class mpya?
+apana. tutaongeza method apo kwa valodator.
+
+nitakuonyesha na age, alafu uongeze password and email, sawa? poa lakini hakuna email kwa hii form
+ee, but kunayo kwa form ingine. Tutatumia hii validator everywhre chonjo.
+sawa rules za validation
+age.
+1. not empty
+2. must be a number
+
+password
+1.not empty
+2.minimum length 5
+
+email
+1.notEmpty
+2. length min 8
+3. contain @
+4. contain .
+
+tuko chonjo?kabisa poa.
+
+validators zote ni almost the same. difference ni apo kwa if-else, tuko pamoja? safi poa
+
+Done! now let us use it
+
+Finished! Test it
+
+hiyo method ya google haijafanya. it works
+
+hii popup inasema?
+
+gotten
+iko chonjo
+
+run iko fiti. tuweke password
+sawa
+buda changamka
+
+me ndo naeka password>?
+ee hukusema,. sawa
+ sasa tutumie usernamevalidator na password validator kwa login
+changamka
+/
+niko area. Issue iko wapi
+ni hack.. kumbe hizi variables ni zenye zimekuwa declared apo juu kwa io method/?
+
+EE. but umezitumia before udeclare.
+
+Alafu hii huku chini sasa ni kelele tu ama itatumika mahali tena?
+
+hiyo ndiyo tutatumia apo kwa success. alafu unavalidate username na method gani? username tunatumia ile ya name validattor
+apana, username ikona validator yake
+Io labda basi tuandike .
+Ee, tuliagree uta andika before kanet kalete zogo
+username inafaa yake.
+sawa hio ni home work
+
+Hii umesema tutaiadd aje bas?   
+Apo ndo inatumika. 
+
+Database db = new Database();
+ni kama tu ile ya 
+Validator v = new Validator();
+
+entry point
+
+login method ni ya kucheck username na password from database. Apo ndo tutashughulika next
+
+Poa basi, meanwhile niendelee na task gani?
+Maliza validation ya forms zote. Supervisor Forms na Student Forms.
+Email validator nikuwachie uandike? ee acha nitry poa si io ndio ya username? apana,actualy ee. ndiyo ya username safi bas
+push content kwa git safi
+alafu sasa hadi lini tena?
+thursday from 8 jioni tufanye database na ukuwe umemaliza iyo task
+safi bazeng,.
+hii pace yetu tutamaliza kweli na muda gani?
+next week friday tutakuwa 90% pande ya admin, user/student yake ni kidogo safi bas.,. tutry tufunge next week before nianze kusomea exams
+poa bazenga, push maneno
+Chonjo
+Lalisha bas
+doz poa bro nawe pia 
+
