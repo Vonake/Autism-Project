@@ -1,19 +1,19 @@
 
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author hp
  */
 public class SupervisorLogin extends javax.swing.JFrame {
 
-    /**
+    /**null
      * Creates new form SupervisorLogin
      */
     public SupervisorLogin() {
@@ -84,15 +84,14 @@ public class SupervisorLogin extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pwd_password, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(pwd_password))))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(90, 90, 90))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,10 +105,10 @@ public class SupervisorLogin extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(pwd_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -118,15 +117,15 @@ public class SupervisorLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         pack();
@@ -143,19 +142,19 @@ public class SupervisorLogin extends javax.swing.JFrame {
 //         this.dispose();
         String uname = txt_username.getText();
         String pword = pwd_password.getText();
-        if(uname.isEmpty()){
+        if (uname.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Input Username");
-        }else if(pword.isEmpty()){
+        } else if (pword.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Input Password");
-        }else{
+        } else {
             Database db = new Database();
             boolean attemptLogin = db.Login(uname, pword);
-            if(attemptLogin == true){
+            if (attemptLogin == true) {
                 Home mdi = new Home();
                 mdi.setVisible(true);
                 this.dispose();
-            }else{
-                JOptionPane.showMessageDialog(null, "Username/Pasword incorrect\n un "+uname+"\npw "+pword);
+            } else {
+                JOptionPane.showMessageDialog(null, "Username/Pasword incorrect\n un " + uname + "\npw " + pword);
             }
         }
 
@@ -194,6 +193,21 @@ public class SupervisorLogin extends javax.swing.JFrame {
                 new SupervisorLogin().setVisible(true);
             }
         });
+        try {
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new SupervisorLogin().setVisible(true);
+                }
+            });
+        } catch (Exception e) {
+            System.err.print(e);
+             java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new SupervisorLogin().setVisible(true);
+                }
+            });
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

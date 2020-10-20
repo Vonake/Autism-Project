@@ -10,7 +10,7 @@ public class Database {
       
     } 
     public boolean Login(String Username, String Password){
-        boolean result = false;
+        boolean result;
         if(Username.equals("kevo") && Password.equals("vonake") ){
             result = true;
         }else{
