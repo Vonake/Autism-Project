@@ -90,6 +90,36 @@ public class Validator{
         array[1] = message;
         return array;
     }
+    public String[] emailValidator(String email){
+        String result = "false";
+        String message = "";
+        String[] array = new String[2];
+        if(email.isEmpty()){
+            result = "false";
+            message = "Input Email";
+           
+        }
+         else if(email.length() <8){
+            result = "false";
+            message = "Email should be more than 8 Characters!";
+        }
+         // testgmail.com
+         else if(email.contains("@") == false){
+            result = "false";
+            message = "Email should contain @ !";
+        }
+         else if(email.contains(".") == false){
+            result = "false";
+            message = "Email should contain . !";
+        }
+         else{
+             result = "true";
+             message = "";
+         }
+        array[0] = result;
+        array[1] = message;
+        return array;
+    }
     
     //method for popup coz i am lazy to type
     public void popup(Object obj){

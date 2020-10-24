@@ -136,13 +136,20 @@ public class SupervisorLogin extends javax.swing.JFrame {
         String[] pword_valid = v.passwordValidator(pword);
 
         if (uname_valid[0] == "true" && pword_valid[0] == "true") {
+            //step 1 : get access to Database class
             Database db = new Database();
+            
+            //step 2 : use Database login with uname and password
             boolean attemptLogin = db.Login(uname, pword);
+            
+            //step 3 : check value of return
             if (attemptLogin == true) {
+                //login success, open home page
                 Home mdi = new Home();
                 mdi.setVisible(true);
                 this.dispose();
             } else {
+                //error ? display error message
                 v.popup("Username/Pasword incorrect");
 //                JOptionPane.showMessageDialog(null, "Username/Pasword incorrect\n un " + uname + "\npw " + pword);
             }

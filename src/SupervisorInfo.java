@@ -221,38 +221,57 @@ public class SupervisorInfo extends javax.swing.JFrame {
         String email = txt_email.getText().trim();
         String username = txt_username.getText().trim();
         String password = txt_password.getText().trim();
-        
+
         Validator v = new Validator();
-        
+
         String[] fname_valid = v.nameValidator(first_name, "First Name");
         String[] lname_valid = v.nameValidator(last_name, "Last Name");
         String[] rship_valid = v.nameValidator(student_rship, "Student Relationship");
-        String[] email_valid = v.nameValidator(email, "email");
+        String[] email_valid = v.emailValidator(email);
         String[] uname_valid = v.nameValidator(username, "Username");
         String[] pword_valid = v.passwordValidator(password);
-        
-        if(fname_valid[0] == "true" && lname_valid[0] == "true" && rship_valid[0] == "true" && email_valid[0] == "true"
-                && uname_valid[0] == "true" && pword_valid[0] == "true"){
+
+        if (fname_valid[0] == "true" && lname_valid[0] == "true" && rship_valid[0] == "true" && email_valid[0] == "true"
+                && uname_valid[0] == "true" && pword_valid[0] == "true") {
             v.popup("Success Proceed to DB");
-        }
-        else{
-            if(fname_valid[0] == "false"){
+            Database db = new Database();
+            String sql_add_supervisor = "INSERT INTO `supervisor`("
+                    + "    `First_Name`,"
+                    + "    `Last_Name`,"
+                    + "    `Student_Relationship`,"
+                    + "    `Email`,"
+                    + "    `UserName`,"
+                    + "    `Password`"
+                    + ")"
+                    + "VALUES('"+first_name+"', '"+last_name+"', '"+student_rship+"', '"+email+"', '"+username+"', '"+password+"')";
+            boolean insert = db.executeInsert(sql_add_supervisor);
+            //if insert == true, sema success
+            //if insert == false, sema failed ni 50-50?apana.unaeza eka if ndani ya if? yes chonjo kabisa! run tucheck db if inafanya
+            if(insert == true){
+                v.popup("Saved Successfully!");
+            }
+            else{
+                v.popup("Failed!");
+            }
+        } else {
+            if (fname_valid[0] == "false") {
                 v.popup(fname_valid[1]);
             }
-            if(lname_valid[0] == "false"){
+            if (lname_valid[0] == "false") {
                 v.popup(lname_valid[1]);
             }
-            if(rship_valid[0] == "false"){
-                v.popup (rship_valid[1]);
+            if (rship_valid[0] == "false") {
+                v.popup(rship_valid[1]);
             }
-            if(email_valid[0] == "false"){
+            if (email_valid[0] == "false") {
                 v.popup(email_valid[1]);
             }
-            if(uname_valid[0] == "false"){
+            if (uname_valid[0] == "false") {
                 v.popup(uname_valid[1]);
             }
-            if(pword_valid[0] == "false")
+            if (pword_valid[0] == "false") {
                 v.popup(pword_valid[1]);
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

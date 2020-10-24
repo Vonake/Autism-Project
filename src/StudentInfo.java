@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author hp
@@ -204,55 +203,70 @@ public class StudentInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         
-       /**
-        * This is the event handler
-        */
+
+        /**
+         * This is the event handler
+         */
         String first_name = txt_firstName.getText().trim();
         String last_name = txt_lastName.getText().trim();
         String age = txt_age.getText().trim();
         String username = txt_username.getText().trim();
         String password = txt_password.getText().trim();
-        
+
 //        validate first_name
         Validator v = new Validator();
-        
+
         //position 0: status
         //position 1:message
-      String[]  fname_valid = v.nameValidator(first_name, "first Name");
-      String[] lname_valid = v.nameValidator(last_name,"Second Name");
-      String[] age_valid = v.ageValidator(age);
-      String[] uname_valid = v.nameValidator(username, "username");
-      String[] pword_valid = v.passwordValidator(password);
-      //success validation
-      if(fname_valid[0] == "true" && lname_valid[0] == "true" && age_valid[0] == "true" && uname_valid[0] == "true"
-              && pword_valid [0] == "true"){
-          v.popup("Success! Proceed to database");
-      }
-      //failed validation
-      else {
-          //check ni gani iko na error message
-          
-          if(fname_valid[0] == "false"){
-              v.popup(fname_valid[1]);
-          }
-          
-          if(lname_valid[0] == "false"){
-              v.popup(lname_valid[1]);
-              
-          }
-          if (age_valid[0] == "false"){
-              v.popup(age_valid[1]);
-          }
-          if (uname_valid[0] == "false"){
-              v.popup(uname_valid[1]);
-          }
-          if (pword_valid[0] == "false"){
-              v.popup(pword_valid[1]);
-          }
-      }
-        
-        
+        String[] fname_valid = v.nameValidator(first_name, "first Name");
+        String[] lname_valid = v.nameValidator(last_name, "Second Name");
+        String[] age_valid = v.ageValidator(age);
+        String[] uname_valid = v.nameValidator(username, "username");
+        String[] pword_valid = v.passwordValidator(password);
+        //success validation
+        if (fname_valid[0] == "true" && lname_valid[0] == "true" && age_valid[0] == "true" && uname_valid[0] == "true"
+                && pword_valid[0] == "true") {
+            v.popup("Success! Proceed to database");
+            Database db = new Database();
+            String add_student_sql = "INSERT INTO `student`("
+                    + "    `First_Name`,"
+                    + "    `Last_Name`,"
+                    + "    `Age`,"
+                    + "    `UserName`,"
+                    + "    `Password`"
+                    + ")"
+                    + "VALUES('"+first_name+"','"+last_name+"','"+age+"','"+username+"','"+password+"')";
+            boolean add_student = db.executeInsert(add_student_sql);
+            if(add_student == true){
+                v.popup("Added Successfully!");
+            }
+            else{
+                v.popup("Failed!");
+            }
+        } //failed validation
+        else {
+            //check ni gani iko na error message
+
+            if (fname_valid[0] == "false") {
+                v.popup(fname_valid[1]);
+            }
+
+            if (lname_valid[0] == "false") {
+                v.popup(lname_valid[1]);
+
+            }
+            if (age_valid[0] == "false") {
+                v.popup(age_valid[1]);
+            }
+            if (uname_valid[0] == "false") {
+                v.popup(uname_valid[1]);
+            }
+            if (pword_valid[0] == "false") {
+                v.popup(pword_valid[1]);
+            }
+        }
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

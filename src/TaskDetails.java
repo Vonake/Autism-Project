@@ -6,7 +6,6 @@ import javax.swing.JFrame;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author hp
@@ -184,24 +183,36 @@ public class TaskDetails extends javax.swing.JFrame {
         String task_name = txt_taskName.getText().trim();
         String description = txt_description.getText().trim();
         String graphic = txt_graphic.getText().trim();
-        
+
         Validator v = new Validator();
-        
+
         String[] tname_valid = v.nameValidator(task_name, "Task Name");
         String[] desc_valid = v.nameValidator(description, "Brief Description");
         String[] graphic_valid = v.nameValidator(graphic, "Image");
-        
-        if(tname_valid[0] == "true" && desc_valid[0] == "true" && graphic_valid[0] == "true"){
-        v.popup("Task Saved Successfully!");
-    }
-        else{
-            if(tname_valid[0] == "false"){
+
+        if (tname_valid[0] == "true" && desc_valid[0] == "true" && graphic_valid[0] == "true") {
+            Database db = new Database();
+            String add_task_sql = "INSERT INTO `tasks`("
+                    + "    `Task_Name`,"
+                    + "    `Description`,"
+                    + "    `Graphic`"
+                    + ")"
+                    + "VALUES('"+task_name+"','"+description+"','"+graphic+"')";
+            boolean add_task = db.executeInsert(add_task_sql);
+            if(add_task == true){
+                v.popup("Task Saved Successfully!");
+            }
+            else{
+                v.popup("Failed!");
+            }
+        } else {
+            if (tname_valid[0] == "false") {
                 v.popup(tname_valid[1]);
             }
-            if(desc_valid[0] == "false"){
+            if (desc_valid[0] == "false") {
                 v.popup(desc_valid[1]);
             }
-            if(graphic_valid[0] == "false"){
+            if (graphic_valid[0] == "false") {
                 v.popup(graphic_valid[1]);
             }
         }

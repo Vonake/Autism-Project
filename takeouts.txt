@@ -237,3 +237,246 @@ Chonjo
 Lalisha bas
 doz poa bro nawe pia 
 
+buda, uko area?
+
+Ndo mimi
+
+Fungua netbeans tuanze d
+
+iko onn
+
+Fiti.Hukuweka validator ya email
+nlieka jana but sijui mbona inahata,. ebu i review
+
+nimeongeza false coz ikipata @ ama . itasema error. Itest
+Tuko pamoja?
+yup,. 
+Sasa Tunatengeneza database connection.
+Same logic as Validator. 
+Database Class itakuwa responsible for :
+1 : Insreting data to database,
+2 : reading data from Database
+
+just that.
+How to do this...
+Two methods will be created na they will take a String sql to execute and give feedback
+Tuko pamoja? apo kwa  string sql io term kidogo ni ngumu
+Sql ni string tu, isikustue, like for example
+
+String name = "kevo";
+String sql = "kario";
+String kevo = "Select * from users;";
+
+Zote ni strings. But moja ikona sql ndani. tuko sawa? ooh string kevo sas ndo iko na sql
+Yup, java haijui ivo, sisi ndo tunajua
+okay, tufanye basi
+one minute narudi
+poa
+Leo mumeamua kuanua internet
+sijui rada ni gani
+Le ni friday si ati hatujui rada yenu D)
+Tuendelee
+
+Hiyo ni library ya kukonnect to database. Already iko so we dont have to worry
+kwani inakosanga?
+Java hukuwa na ka library ka kila kitu, sound, video, sockets, sasa wakitupea zote at onse itakuwa too big na zingine hata hazitatumika
+sasa wakaweka a way that if you need them una add one by one.
+Last time tukiwa uku tuliweka hiyo
+Hii ingine ni ya kuweka data kwa table
+Hii ingine ni ya urembo, See? yup
+But isikupatie stress, Area yetu si urembo ni logic 
+
+Tuko pamoja? ama nimekimbia sana? tuko sawa
+
+To create data in database,
+
+step 1: Create Connection
+step 2: Create SQL Statement
+step 3: Send to server
+step 4: Handle response
+
+Tuanze na step 1.
+na tengeneza a function that i will use everywhere, okay? cool
+Connection requires the following
+1.User wa database
+2.Password ya user
+3.Database
+4. Driver we will use. com.mysql.jdbc.Driver: Specifies that tunatumia mysql type of db.
+
+Connection class is complete! Weka jina ya database
+izo vitu umeeka kwa connection inafaa tu nicram,. siradi shiet
+ee, ndiyo maana nimeziweka kwa method tusiziandike tena
+
+Connection imework. Zima sql then run code
+
+Tuko pamoja? yes
+Washa server sasa, server ? ee, mysql iyo umewasha,. poa umeipea jina kuubwa
+haha, ni server sawa, noted
+
+Any time tunataka kumake connection we do this
+Database D = new Database();
+Connection c = d.Connect();
+chonj
+mbona hatujatumia hizi commands kucconect?
+Kwasababu ziko kwa same class.
+
+inatumika only when tunaicall from another class
+when tunaikcall from main method
+Tuko pamoja?yup
+
+Kabro kanadai join class, Tuendelee 8
+sasawa boyz
+Fiti na ni 8,8 si 8 930 fiti, leo sina distractionss fiti
+buda
+nishow ukiwa set
+Buda
+uko area?
+
+niko ,. nataka uzimia huo con line, nipee afew mins
+kumbe ni jamaa za kamiti jo
+niko on!
+Buda usihepe
+katambe.
+
+Sql important tutatumia ni za select, insert,delete na update pekee
+Najua uko farmiliar nazo, sindio? yup izo kidogo nmetumianga
+Fiti, tunaendelea na database yetu.
+
+let us test our ExecuteSql method
+
+ResultSet ni the type of data we get from sql in java.
+tuko sawa?sawa
+
+Enter a character! huku umefukaje and what is T?
+ni game ya java. Test it tuon endelea
+nimeshinda
+
+Tuendele, ilikuwa test tu.
+
+Ume elewa what i have done? eer yea
+Malizia the other two, ni izo tu mbili? how about the reset?
+Tunatest our method,. ooh sawa
+haya
+Tumechukua only the thre columns from db. Let us print them
+
+Print the other two
+hio record in ya?
+
+while(rs.next())
+ita loop through all the content of the table. 
+Count itahesabu how many times ime loop. 
+if tukona two rows; count == two.
+Tuko pamoja? yea but record inkujia wapi
+ tutatumia iyo kujua if tumepata data from db.
+maliza alafu tutest uone
+
+record inatuambia how much data imepata
+umeielewa? iko 0 badala ya 0+1?
+
+itafanya 0+1 only if rs ikona data.
+rs.next ni false. sasa haitafanya anything inside the loop.
+
+tumeweka dummy data
+
+!!Run code
+Uko?
+niko. imetupatia what we want
+uliza swali. hizo umetoa nizipi>?
+ile code netbeans huwa inagenerate kujaribu kusolve error. ooh sawa
+
+swali ingine?
+
+hii ni just a test, there is nowhere tunatumia hio data in try..?
+for now yes. Method yetu ndiyo ilikuwa main focus. sasa tutafanya implementation kwa project.okay
+NOTE : ONLY SQL Will change! the rest is the same!
+
+Tutarename our method to executeSelect
+shwari
+
+Tutaimplement login ifanye na database.
+Tunaselect user with provided username and password
+
+ifwe find records, true, else we return false
+
+creating sql we do it from phpmyadmin ndiyo tukuwe sure inafanya, sawa?poa
+
+sql works!
+
+let us test it. but uko n swali so farapana 
+Test code
+
+kwanini imefail? juu hatujaeka logins?
+method login inachikua username na password.
+nimeziweka direct
+
+weka the correct values and test
+done
+Ume elewea how imework? yes i believe so
+let us configure it wuth our project.
+
+it is already implemented!
+
+run code, umekwama, swali? nko poa apo
+sasa tutaongeza method ya kuweka data kwa datase.
+
+It is the same as executeSelect
+
+tutaiita executeInsert
+since tunaweka data kwa database, we dont need resultset.
+Tuko pamoja? and why do we use boolean?
+ndiyo tujue if imesave data successfuly. tutarudisha false if ni failed na true if ni successfuly added.
+boolean is the easiest way to know if imefanya ama haijafanya , okaunimekimbia sana? apna tukobumper
+
+tunatumia update when saving data in database slecting tulitumia? query?
+yes saawa
+
+hiyo ni comment ya kuexplain method inafanya nini incase unahitaji freshening
+ebu nikuulize?
+
+haya niambie io error ni kwanini
+fiti. Method yetu exequteInsert inachukua string moja tu, ambayo ni an sql.
+Step 1 : Create the sql string first. umeelewa? ee sasa kwa php? ee. hatuweki primary key, ita auto inrement.okay
+values sasa ni gani?\
+weka a place holder for each = '',''
+for all the columns, ndiyo tutatweka na java the value
+
+copy sql yako, umecopy?
+sikuwa nimecopy nkirun,. imelost?tutaitengeneza tena
+
+Haijaingia?? imeingia apa ivi. nilitaka iyo erro ikam ndiyo next time tujue kuihandle.
+tusipoweka ivo haitaweka the data. correct izo zingine
+add mywingine
+chonjpo sasa utaweza kuadd student?
+Si nikueka ru venye tumeeka kwa supervisor?
+ee. sa wa sai nnikiona
+
+Uko ama umedoz
+niko, naona uko rada mbaya sana! no kugeria mani
+task dakika ngapi? wewe unaonaje? 5 min.. poa
+session tunaskuma mpaka saa ngapi?
+tukimaliza task ni ivo for now, alafu tutaongeza tables zingine tukimalizanga project
+aii ati tukimalizanga? what do you mean
+since validation na kuinser na kuselect to db tumeiva,  iku kama 4, ama 5 tumalize projo. tutaongeza the rreal deal ya autism.
+btw kwa task kuna image,. ,i wanted to create a validator alafu kwa ku upload itakuwaje?
+image na table ni beast kivyake, but ni manageable. nilitaka the next session tuhandle table na image
+So basi sai nainsert tu taskn name na description? ee. alafu nikukosoe kama lecturer nitafutie makosa akuna
+Aii na mbona hujanikosoa student iko sawa. nivile sijaka kuleta confusion. kwanza ni kuielewa kusave, then database validation na niivo.
+ASaddw .
+acha niadd basi utanisho
+fiti
+kosoa mtu sasa, ata confusion tutadeal nayo
+haha, sawa. so far kuweka data si issue, sindio? yup
+Example ya ku add supervisor, nikadd one email more than once infafaa ikubali ama ikatae?ikatae account already exists.
+na student? unless username. sasa infafaa tunacheck kwanza kama kuna mtu kama huyo before to save.
+Hii pekee ndo hatujafanya. ebu sujest tunaweza check aje i guess pale kwa validator tunaeza eka kitu like if exists hehe.
+iyo ni idea poa sana.but tuko lazytunataka kutumia one code eerywhere
+so we create a new class ? apana. apo kwa database tunaweka method inaitwa checkExists. ichukue sql , irudise true or false.
+if user ako ni tru, if hako ni false, tutatumia code iko, nimekukanganya? apana,. niko rada. tuchangamke, sai ama? ee. kiasi kama 5min narudi
+ni part kubwa, tunaeza break tumeet kitu 9? iyo ni fit pia, tunaweza ipush kesho pia bro, but ni kakitu kadogo kasikupee stress,
+kama ni kadogo tuchangamke kabla 7 kuna game. nikona mtoi sai mamake ametoka, tuifanye kesho, kanasumbia, buda watch game, tuko na pace poa na programming style
+yetu ni dope! less code, more functionality, ama hio pia ni chonjo, but you have the overview of the whole thing so, wewe ndo utatumanage ki masaa sa as tumalize 
+by friday. fiti. usistress
+shwari,. kesho masaa gani?
+tutaanza 10:am. tukaskume mpaka sai kabisa basi...
+kesho boyz
+kesho. push kwa git sawa
