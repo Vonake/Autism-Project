@@ -226,7 +226,7 @@ public class StudentInfo extends javax.swing.JFrame {
         //success validation
         if (fname_valid[0] == "true" && lname_valid[0] == "true" && age_valid[0] == "true" && uname_valid[0] == "true"
                 && pword_valid[0] == "true") {
-            v.popup("Success! Proceed to database");
+            //v.popup("Success! Proceed to database");
             Database db = new Database();
             String add_student_sql = "INSERT INTO `student`("
                     + "    `First_Name`,"
@@ -236,12 +236,19 @@ public class StudentInfo extends javax.swing.JFrame {
                     + "    `Password`"
                     + ")"
                     + "VALUES('"+first_name+"','"+last_name+"','"+age+"','"+username+"','"+password+"')";
-            boolean add_student = db.executeInsert(add_student_sql);
-            if(add_student == true){
+            String check_student_sql = "SELECT * FROM `student` WHERE `UserName`='"+username+"'";
+            boolean uname_exists = db.checkDuplicate(check_student_sql);
+            if(uname_exists == true){
+                v.popup("Username "+username+" already exists!");
+            }
+            else{
+                boolean add_student = db.executeInsert(add_student_sql);
+                if(add_student == true){
                 v.popup("Added Successfully!");
             }
             else{
                 v.popup("Failed!");
+            }
             }
         } //failed validation
         else {

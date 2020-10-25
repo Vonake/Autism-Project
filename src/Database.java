@@ -100,6 +100,26 @@ public class Database {
 
         return success;
     }
+    
+    /**
+     * This method checks if there are results from the database. It returns true if the query has
+     * results, and false if the query has no results.
+     * @param sql
+     * @return 
+     */
+    public boolean checkDuplicate(String sql){
+       boolean result = false;
+       ResultSet rs = executeSelect(sql);
+        try {
+            if (rs.next() == true) {
+                result =true;
+            }
+        } catch (Exception ex) {
+           System.out.println(ex);
+           result = true;
+        }
+       return result;
+    }
 
     public static void main(String[] args) {
         System.out.println("My Autistic DB");

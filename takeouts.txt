@@ -480,3 +480,16 @@ shwari,. kesho masaa gani?
 tutaanza 10:am. tukaskume mpaka sai kabisa basi...
 kesho boyz
 kesho. push kwa git sawa
+vipi sir, nlikuwa naeka kiruma
+tuko pamoja?
+niko
+uko sure?. ee Tuendelee.
+
+Tuanze na kusolve database validation.
+Tulisema tutatengenza a method to do that for us.
+Method will take sql as parameter, and return true or false.
+Tumeaagree na this method? siezi kataa
+good. Tuanze.
+
+Nime re-use method execute query, tuko pamoja ama nimekupoteza?apo kwa hizo true acha nkupigie
+poa

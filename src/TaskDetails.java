@@ -198,12 +198,19 @@ public class TaskDetails extends javax.swing.JFrame {
                     + "    `Graphic`"
                     + ")"
                     + "VALUES('"+task_name+"','"+description+"','"+graphic+"')";
-            boolean add_task = db.executeInsert(add_task_sql);
-            if(add_task == true){
+            String check_task_sql = "SELECT * FROM `tasks` WHERE `Task_Name`='"+task_name+"'";
+            boolean taskname_exists = db.checkDuplicate(check_task_sql);
+            if(taskname_exists == true){
+                v.popup("Task Name "+task_name+" Already Exists!");
+            }
+            else{
+                boolean add_task = db.executeInsert(add_task_sql);
+                if(add_task == true){
                 v.popup("Task Saved Successfully!");
             }
             else{
                 v.popup("Failed!");
+            }
             }
         } else {
             if (tname_valid[0] == "false") {

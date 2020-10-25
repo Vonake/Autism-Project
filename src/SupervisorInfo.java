@@ -233,7 +233,7 @@ public class SupervisorInfo extends javax.swing.JFrame {
 
         if (fname_valid[0] == "true" && lname_valid[0] == "true" && rship_valid[0] == "true" && email_valid[0] == "true"
                 && uname_valid[0] == "true" && pword_valid[0] == "true") {
-            v.popup("Success Proceed to DB");
+            //v.popup("Success Proceed");
             Database db = new Database();
             String sql_add_supervisor = "INSERT INTO `supervisor`("
                     + "    `First_Name`,"
@@ -243,16 +243,24 @@ public class SupervisorInfo extends javax.swing.JFrame {
                     + "    `UserName`,"
                     + "    `Password`"
                     + ")"
-                    + "VALUES('"+first_name+"', '"+last_name+"', '"+student_rship+"', '"+email+"', '"+username+"', '"+password+"')";
-            boolean insert = db.executeInsert(sql_add_supervisor);
-            //if insert == true, sema success
-            //if insert == false, sema failed ni 50-50?apana.unaeza eka if ndani ya if? yes chonjo kabisa! run tucheck db if inafanya
-            if(insert == true){
-                v.popup("Saved Successfully!");
+                    + "VALUES('" + first_name + "', '" + last_name + "', '" + student_rship + "', '" + email + "', '" + username + "', '" + password + "')";
+
+            String sql_check_supervisor = "SELECT * FROM `supervisor` WHERE `Email`='"+email+"'or `UserName`='"+username+"'";
+            boolean exists = db.checkDuplicate(sql_check_supervisor);
+
+            if (exists == true) {
+                v.popup("Email " + email + " / Username "+username+" is already registered");
+            } else {
+                boolean insert = db.executeInsert(sql_add_supervisor);
+                //if insert == true, sema success
+                //if insert == false, sema failed ni 50-50?apana.unaeza eka if ndani ya if? yes chonjo kabisa! run tucheck db if inafanya
+                if (insert == true) {
+                    v.popup("Saved Successfully!");
+                } else {
+                    v.popup("Failed!");
+                }
             }
-            else{
-                v.popup("Failed!");
-            }
+
         } else {
             if (fname_valid[0] == "false") {
                 v.popup(fname_valid[1]);
