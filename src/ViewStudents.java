@@ -15,6 +15,7 @@ public class ViewStudents extends javax.swing.JFrame {
 
     /**
      * Creates new form ViewStudents
+     * we use it here
      */
     public ViewStudents() {
         initComponents();
@@ -23,7 +24,12 @@ public class ViewStudents extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-       
+       getStudentInfo();
+    }
+     private void getStudentInfo(){
+        String get_students_sql = "SELECT `First_Name`, `Last_Name`, `Age` FROM `student`";
+        Database db = new Database();
+        db.populateTable(get_students_sql, tableStudents);
     }
 
     /**
@@ -41,7 +47,7 @@ public class ViewStudents extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableStudents = new javax.swing.JTable();
 
         jTable8.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -69,7 +75,7 @@ public class ViewStudents extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableStudents.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -80,7 +86,7 @@ public class ViewStudents extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableStudents);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,7 +174,7 @@ public class ViewStudents extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable8;
+    private javax.swing.JTable tableStudents;
     // End of variables declaration//GEN-END:variables
 }

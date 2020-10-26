@@ -15,6 +15,7 @@ public class StudentInfo extends javax.swing.JFrame {
 
     /**
      * Creates new form StudentInfo
+     * We use it here!
      */
     public StudentInfo() {
         initComponents();
@@ -24,6 +25,8 @@ public class StudentInfo extends javax.swing.JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.

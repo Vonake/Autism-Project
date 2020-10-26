@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.Statement; // to handle sql and send to server
 import java.sql.ResultSet; // to handle results from server
 import java.sql.SQLException; // to handle sql errors
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JTable;
+import net.proteanit.sql.DbUtils;
 
 public class Database {
 
@@ -121,6 +121,11 @@ public class Database {
        return result;
     }
 
+    public void populateTable(String sql, JTable table){
+        //hii code sijawai elewa how it works. na copy paste from my machine.
+         ResultSet rs = executeSelect(sql);
+         table.setModel(DbUtils.resultSetToTableModel(rs));
+    }
     public static void main(String[] args) {
         System.out.println("My Autistic DB");
 //        Testing Connection

@@ -493,3 +493,88 @@ good. Tuanze.
 
 Nime re-use method execute query, tuko pamoja ama nimekupoteza?apo kwa hizo true acha nkupigie
 poa
+
+Alafu bazu..
+tuanze. run nione ile output ya jana
+
+iko chonjo.
+Tuanze na display all supervisors.
+Tutatengeneza a method that takes a table and sql as params
+Then populate the table, tuko sawa?yup.. elaborate parameter
+parameters ni zile vitu tunapea method. example
+public boolean executeInsert(String sql)
+sql ni parameter ya method executeInsert ooh i get it now
+Let as get to it tuone ikifanya
+
+Method iko chonjo.
+Let us use it. We call it at the constructor of our class where we want to use it
+ooh hii hakuna result inareturn? apana, akuna result. itatufanyia kila kitu safi,
+nimetumia wrong form, pole. usikuwe confused!poa
+Umepotea? zii nko bumper
+populate tasks na supervisors
+sithani tulieka view supervisor
+ebu tuone. it should be there. but tuweke task kwanza
+i think it should be there side ya admin
+it should be there. nitakuonyesha a way ya kuficha vitu if mwenye amelogin ni admin ama supervisor
+changamkia task
+chonjo
+tumemaliza step 1. una swali?
+apaa
+task 2. populate dropdpwn. nilikuwa natafuta hii form. sijui nafanya nini, let me just write code
+kwani unahang? kidogo.
+Let us now populate it. We need to get id only. buda wachana na mousesijaguza
+Nafeel ni kama naenda pace ya kipchoge, bado uko? nashika nangoja io test. sawa. iko chonjo. run iyo maneno
+
+Tumepopulate dropdown. next ni kuweka event. 
+dropdown ikona event inaitwa actionEvent, siyo onchange,
+tutatumia hiyo drop down onchange kusaka the right data.
+
+tuko pamoja?, sawa
+tuconfirm na uncle google ni gani.
+Event listener yetu inafanya. sasa tuitumie kuget information.
+imekuwa muda nikiandika java, understand confusion iko kidogo, ni sawa.
+tuendele
+sasa we get data using the sql. test code. Test Tena. Malizia the rest
+uko? niko.
+Tuendele. next step. button update, na button delete.
+button update.
+step 1 : get all values from the form
+step 2 : validate
+step 3 : write sql for update
+step 4 : update content to db
+
+Tuanze na step 1. Hint ::update logic is the same as save logic. only difference ni sql. 
+Utaweza step 1 ? getting values? yes, eg string fname = txtfname.getText().trim(); yeah io nakumbuka.
+changamka
+
+uko fiti naona.
+Step 2 : validate fields. utaweza? acha nione kama ntakumbuka.poa
+lazima niibie. ni sawa,
+hii error ata nkishinda apo site. kuna missing bracket. apo uko sawa,apo pia
+iyo sql ndiyo iko na shida tu
+apo uko chonjo. uko chonjo.
+
+we are updating no inserting!
+
+Umeshika vile code ina flow, sql nyduip ilikuwa tu tricky, sai utaweza malizia? acha nitry. fiti hio ni ? inamaanisha not equal to. tunacheckc if kuna mtu mwingine akona that username,
+tuko pamoja
+but si already tumeeka validator ya username. ee. after tumeconfirm validation iko sawa, since tuna update, tunaangalia kama kuna hiyo yusername kwa database. if iko na mtu
+mwingine tumwambie iyo username imechukuliwa.
+ooh nimeget ni and
+ee. li lazima kusikuwe na hiyo username na mtu mwingine. tuna avoid username mbili zinafanana .fiti
+
+iko fine, test code. kabisa
+imeweza
+kabisa. tumalize delete sai?unaonaje?ilikuwa kwa to do list ya leo. lazima iishe,. sawaa basi.,
+
+Delete button
+step1 : confirm if we realy want to delete
+if yes=>go to step 2,
+step 2: Delete, call select refresh.
+
+generate sql delete run code
+infit i
+in the mean time task ni yako, populate combo, add event listener, update database,fiti? pozi.Doz poa, kesho 8 chonjo
+push content kwa git before ulale safi. 
+nawe pia
+

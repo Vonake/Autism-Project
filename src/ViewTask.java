@@ -23,6 +23,12 @@ public class ViewTask extends javax.swing.JFrame {
         setTitle("View Tasks");
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setResizable(false);
+        getTaskDetails();
+    }
+    private void getTaskDetails(){
+        String taskDetails = "SELECT `Task_Name`, `Description`, `Graphic` FROM `tasks`";
+        Database db = new Database();
+        db.populateTable(taskDetails, TaskDetails);
     }
 
     /**
@@ -36,7 +42,7 @@ public class ViewTask extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TaskDetails = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -44,7 +50,7 @@ public class ViewTask extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Gill Sans MT", 3, 24)); // NOI18N
         jLabel1.setText("VIEW TASKS");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TaskDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -55,7 +61,7 @@ public class ViewTask extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TaskDetails);
 
         jButton1.setFont(new java.awt.Font("Gill Sans MT", 1, 18)); // NOI18N
         jButton1.setText("EXIT");
@@ -139,9 +145,9 @@ public class ViewTask extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TaskDetails;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

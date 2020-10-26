@@ -1,12 +1,16 @@
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author hp
@@ -22,6 +26,27 @@ public class EditStudent extends javax.swing.JFrame {
         setTitle("Edit Student Info");
         setResizable(false);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        populateSelect();
+    }
+
+    private void populateSelect() {
+        // step 1 : create sql for selecting ids
+        String sql_select_ids = "SELECT `Student_ID` FROM `student`";
+        Database db = new Database();
+        //step 2 : get the results from database
+        ResultSet rs = db.executeSelect(sql_select_ids);
+
+        try {
+            //we have contents
+            while (rs.next()) {
+                //add contents of database to combo box
+                JcomboSelectStudent.addItem(rs.getString("Student_ID"));
+            }
+        } catch (Exception e) {
+            //if we have error, remove all of them
+            JcomboSelectStudent.removeAll();
+        }
+
     }
 
     /**
@@ -35,20 +60,20 @@ public class EditStudent extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtFname = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtUsername = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtLname = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JTextField();
+        txtAge = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        JcomboSelectStudent = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,29 +82,29 @@ public class EditStudent extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Student Info", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gill Sans MT", 3, 11), new java.awt.Color(0, 204, 255))); // NOI18N
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtFname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtFname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtFnameActionPerformed(evt);
             }
         });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Password");
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtUsername.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Username");
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtLname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Age");
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtPassword.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtAge.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("First Name");
@@ -89,6 +114,11 @@ public class EditStudent extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setText("Update");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton4.setText("Exit");
@@ -100,6 +130,11 @@ public class EditStudent extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton3.setText("Delete");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -129,11 +164,11 @@ public class EditStudent extends javax.swing.JFrame {
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField3)
-                    .addComponent(jTextField5))
+                    .addComponent(txtUsername)
+                    .addComponent(txtFname, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtLname, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtAge)
+                    .addComponent(txtPassword))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -142,23 +177,23 @@ public class EditStudent extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtLname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -167,8 +202,12 @@ public class EditStudent extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JcomboSelectStudent.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        JcomboSelectStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JcomboSelectStudentActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,7 +221,7 @@ public class EditStudent extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(JcomboSelectStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -191,7 +230,7 @@ public class EditStudent extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JcomboSelectStudent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -200,9 +239,9 @@ public class EditStudent extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtFnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFnameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtFnameActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -210,6 +249,145 @@ public class EditStudent extends javax.swing.JFrame {
         h.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void JcomboSelectStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcomboSelectStudentActionPerformed
+        // TODO add your handling code here:
+        Validator v = new Validator();
+
+//         step one : get the value of select
+        String student_id = JcomboSelectStudent.getSelectedItem().toString();
+
+//        step 2 : generate sql
+        String sql_student_info = " SELECT * FROM `student` WHERE `Student_ID`='" + student_id + "' ";
+
+        String fname = null;
+        String lname = null;
+        String age = null;
+        String username = null;
+        String password = null;
+
+        //fetch the data from database
+        Database db = new Database();
+        ResultSet rs = db.executeSelect(sql_student_info);
+
+        try {
+            // put data to variables
+            while (rs.next()) {
+                fname = rs.getString("First_Name");
+                lname = rs.getString("Last_Name");
+                age = rs.getString("Age");
+                username = rs.getString("UserName");
+                password = rs.getString("Password");
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        // put variable names to fields
+        txtFname.setText(fname);
+        txtLname.setText(lname);
+        txtAge.setText(age);
+        txtUsername.setText(username);
+        txtPassword.setText(password);
+    }//GEN-LAST:event_JcomboSelectStudentActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String fname = txtFname.getText().trim();
+        String lname = txtLname.getText().trim();
+        String age = txtAge.getText().trim();
+        String uname = txtUsername.getText().trim();
+        String pword = txtPassword.getText().trim();
+        String student_id = JcomboSelectStudent.getSelectedItem().toString();
+
+        Validator v = new Validator();
+
+        String[] fname_valid = v.nameValidator(fname, "First Name");
+        String[] lname_valid = v.nameValidator(lname, "Last Name");
+        String[] age_valid = v.ageValidator(age);
+        String[] uname_valid = v.nameValidator(uname, "Username");
+        String[] pword_valid = v.passwordValidator(pword);
+
+        if (fname_valid[0] == "true" && lname_valid[0] == "true" && age_valid[0] == "true" && uname_valid[0] == "true" && pword_valid[0] == "true") {
+            Database db = new Database();
+            String sql_update_student = "UPDATE"
+                    + "    `student`"
+                    + "SET"
+                    + "    `First_Name` ='" + fname + "',"
+                    + "    `Last_Name` ='" + lname + "',"
+                    + "    `Age` ='" + age + "',"
+                    + "    `UserName` = '" + uname + "',"
+                    + "    `Password` = '" + pword + "'"
+                    + "WHERE"
+                    + "     `Student_ID` ='" + student_id + "'";
+            String sql_check_student = "SELECT * FROM `student` WHERE `UserName`='" + uname + "' and Student_id <> '" + student_id + "'";
+            boolean exists = db.checkDuplicate(sql_check_student);
+
+            if (exists == true) {
+                v.popup("Username " + uname + " is already registered");
+            } else {
+
+                //ndiyo tuine error iko wapi kwa sql. run code. ako ndiokanatunyima amani
+                boolean insert = db.executeInsert(sql_update_student);
+                //if insert == true, sema success
+                //if insert == false, sema failed ni 50-50?apana.unaeza eka if ndani ya if? yes chonjo kabisa! run tucheck db if inafanya
+                if (insert == true) {
+                    v.popup("Saved Successfully!");
+                } else {
+                    v.popup("Failed!");
+                }
+            }
+        } else {
+            if (fname_valid[0] == "false") {
+                v.popup(fname_valid[1]);
+            }
+            if (lname_valid[0] == "false") {
+                v.popup(lname_valid[1]);
+            }
+            if (age_valid[0] == "false") {
+                v.popup(age_valid[1]);
+            }
+            if (uname_valid[0] == "false") {
+                v.popup(uname_valid[1]);
+            }
+            if (pword_valid[0] == "false") {
+                v.popup(pword_valid[1]);
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        //step one : confirm
+        int delete = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete student");
+//          yes = 0
+
+        if (delete == 0) {
+            //step 2; get id
+            String student_id = JcomboSelectStudent.getSelectedItem().toString();
+            //create sql 
+            String delete_student_sql = "DELETE FROM `student` WHERE `Student_ID` ='"+student_id+"'";
+            
+            Database db = new Database();
+            //delete with insert method
+            boolean deleted = db.executeInsert(delete_student_sql);
+            
+            //if delete success, reload the combobox
+            if(deleted == true){
+                //code for removing the item from combo box. run again
+                //acha tukafungie apo, ii kitu inakaa inataka kutukalia. sawa
+                JcomboSelectStudent.removeAllItems();
+                populateSelect();
+            }
+            else{
+                Validator v = new Validator();
+                v.popup("Something went wrong! contact admin!");
+            }
+        }
+
+        //tujue yes ni value gani
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,10 +425,10 @@ public class EditStudent extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> JcomboSelectStudent;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -258,10 +436,10 @@ public class EditStudent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField txtAge;
+    private javax.swing.JTextField txtFname;
+    private javax.swing.JTextField txtLname;
+    private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }
