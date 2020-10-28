@@ -1,4 +1,5 @@
 
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /*
@@ -6,7 +7,6 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author hp
@@ -22,6 +22,25 @@ public class Home extends javax.swing.JFrame {
         setResizable(false);
         setSize(1350, 700);
         setLocationRelativeTo(null);
+        getTask();
+    }
+
+ 
+
+    public void getTask() {
+        Database db = new Database();
+        int result = 0;
+        String sql = "SELECT * FROM `tasks`";
+        ResultSet rs = db.executeSelect(sql);
+        try {
+            while (rs.next() == true) {
+                result ++;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            result = 0;
+        }
+        total_tasks.setText("Total Tasks : "+result);
     }
 
     /**
@@ -38,7 +57,7 @@ public class Home extends javax.swing.JFrame {
         dashboardPanel = new javax.swing.JPanel();
         taskPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        total_tasks = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         userPanel = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -53,6 +72,7 @@ public class Home extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -82,9 +102,9 @@ public class Home extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/users/task_128.png"))); // NOI18N
         taskPanel.add(jLabel1, java.awt.BorderLayout.CENTER);
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Total Tasks : 10");
-        taskPanel.add(jLabel2, java.awt.BorderLayout.PAGE_END);
+        total_tasks.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        total_tasks.setText("Total Tasks : 10");
+        taskPanel.add(total_tasks, java.awt.BorderLayout.PAGE_END);
 
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -157,6 +177,11 @@ public class Home extends javax.swing.JFrame {
         jSplitPane2.setRightComponent(dashboardPanel);
 
         jPanel2.setLayout(new java.awt.BorderLayout());
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/users/Help_Icon_128.png"))); // NOI18N
+        jButton1.setText("jButton1");
+        jPanel2.add(jButton1, java.awt.BorderLayout.CENTER);
+
         jSplitPane2.setLeftComponent(jPanel2);
 
         jMenu1.setText("Manage Students");
@@ -264,10 +289,10 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-         // TODO add your handling code here:
-         StudentInfo st = new StudentInfo();
-         st.setVisible(true);
-         this.dispose();
+        // TODO add your handling code here:
+        StudentInfo st = new StudentInfo();
+        st.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -353,6 +378,7 @@ public class Home extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel dashboardPanel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -360,7 +386,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -383,6 +408,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel studentPanel;
     private javax.swing.JPanel studentPanel1;
     private javax.swing.JPanel taskPanel;
+    private javax.swing.JLabel total_tasks;
     private javax.swing.JPanel userPanel;
     // End of variables declaration//GEN-END:variables
 }

@@ -577,4 +577,70 @@ infit i
 in the mean time task ni yako, populate combo, add event listener, update database,fiti? pozi.Doz poa, kesho 8 chonjo
 push content kwa git before ulale safi. 
 nawe pia
+buda,tuchape
+fungua ile part ilikutesa
+ndo io
+fiti : code iko sawa. ni vile bado hukuwa umeicall kwa constructor
+sawa, swali ingine
+hio validator tulicall na sijaona place tumeitumia
+hatuihitaji ata, itoe.
+utaweza kuweka update functionality? labda ni place nmehata, nlieka
+imedu?
+yup
+ validation yako haifanyi iko fiti
+ nimerudi. Tuendelee na combo box.
+Combo box already ikona methods zake.
+This one sets how may items tunaweza ona at once
 
+izi ndizo important
+1.setSelectedItem
+2.getSelectedItem
+3.getSelectedIndex
+4.addItem
+5.removeItem
+6.removeItemAt
+7.removeAllItem
+
+ni mingi but hizi ndiyo important
+
+delete inafanya. 
+i have used two methods to do the trick.
+method 3 and 6.
+method 3 : get selectedIndex inanipea the position of the element to remove :NB COMBOBOX is like ARRAY!
+method 6 : removeitem at . inatoa the element from  specified position.
+method 3 inaspecify position, method si6 inadelelte. nimekuconfuse?< apana
+sasa it brings a new problem. what happens when you delete all items ? if combobox haina content, clear the form
+
+we do this at the selectListenerEvent.
+
+tuko pamoja?yup
+fill in the remaining code
+fit
+run code. tuulize uncle google. uyu anaandika code yote pamoja, tricky for a big project!
+tuendelee
+umerada vile imework, ee
+
+ntacreate a method task, yenye itacount all the items kwa tale task na idisplay results.
+it will be called byconstructor
+
+ata sijui nilikuwa na complicate nini
+ime eleweka, kabsa
+supervisors na students, nitaweka. so far now uaweza doz, ni design database nifanye presentation kesho 8. am ama pm? pm
+
+alafu io lib ya icons inakuaga ama ni wewe uliweka?ee. nilizidownload nikaweka apo. nilizikusanya online, ooh alafu kwa dashboard 
+unadrag and drop tu ama unatumia majina zenyewe, umeona
+yea nimeshika
+fiti bazu, 
+kesho nko na kidato 8, leo.. acha nikavute,. hizo assignment nitachangamka 
+> Edit Supervisor
+> Dashboard student na supervisor count
+> Delete Students
+> Delete Task, kabisa
+poausers ni supervisors? ee. ni supervisor
+ukimaliza izo apo blia issue umeiva projo yako, fiti
+Doz poa
+chonjo, baadae, wacha ni push
+
+
+
+fiti. before ulale. sai sai

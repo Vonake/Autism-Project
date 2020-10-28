@@ -70,9 +70,9 @@ public class EditStudent extends javax.swing.JFrame {
         txtAge = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         JcomboSelectStudent = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -112,11 +112,11 @@ public class EditStudent extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Last Name");
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setText("Update");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
 
@@ -128,11 +128,11 @@ public class EditStudent extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton3.setText("Delete");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
 
@@ -159,9 +159,9 @@ public class EditStudent extends javax.swing.JFrame {
                         .addGap(96, 96, 96)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtUsername)
@@ -196,9 +196,9 @@ public class EditStudent extends javax.swing.JFrame {
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(btnUpdate)
                     .addComponent(jButton4)
-                    .addComponent(jButton3))
+                    .addComponent(btnDelete))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -254,45 +254,71 @@ public class EditStudent extends javax.swing.JFrame {
         // TODO add your handling code here:
         Validator v = new Validator();
 
-//         step one : get the value of select
-        String student_id = JcomboSelectStudent.getSelectedItem().toString();
+        int items = JcomboSelectStudent.getItemCount();
+//        jcombobox is empty
+//          dont query the database
+// clear the form
+//tell user akuna students
+//disable the delete and update button
+        if (items == 0) {
+            //clear the form
+            txtFname.setText(null);
+            txtLname.setText(null);
+            txtAge.setText(null);
+            txtUsername.setText(null);
+            txtPassword.setText(null);
+            //tell user no students are found
+            v.popup("NO STUDENTS FOUND!");
+            //disable button delete and update
+            btnUpdate.disable();
+            btnDelete.disable();
+        } //Proceed with normal code.
+        else {
+            //enable the buttons
+            btnUpdate.enable();
+            btnDelete.enable();
+            //step one : get the value of select
+            String student_id = JcomboSelectStudent.getSelectedItem().toString();
 
 //        step 2 : generate sql
-        String sql_student_info = " SELECT * FROM `student` WHERE `Student_ID`='" + student_id + "' ";
+            String sql_student_info = " SELECT * FROM `student` WHERE `Student_ID`='" + student_id + "' ";
 
-        String fname = null;
-        String lname = null;
-        String age = null;
-        String username = null;
-        String password = null;
+            String fname = null;
+            String lname = null;
+            String age = null;
+            String username = null;
+            String password = null;
 
-        //fetch the data from database
-        Database db = new Database();
-        ResultSet rs = db.executeSelect(sql_student_info);
+            //fetch the data from database
+            Database db = new Database();
+            ResultSet rs = db.executeSelect(sql_student_info);
 
-        try {
-            // put data to variables
-            while (rs.next()) {
-                fname = rs.getString("First_Name");
-                lname = rs.getString("Last_Name");
-                age = rs.getString("Age");
-                username = rs.getString("UserName");
-                password = rs.getString("Password");
+            try {
+                // put data to variables
+                while (rs.next()) {
+                    fname = rs.getString("First_Name");
+                    lname = rs.getString("Last_Name");
+                    age = rs.getString("Age");
+                    username = rs.getString("UserName");
+                    password = rs.getString("Password");
 
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
             }
-        } catch (SQLException ex) {
-            System.out.println(ex);
+
+            // put variable names to fields
+            txtFname.setText(fname);
+            txtLname.setText(lname);
+            txtAge.setText(age);
+            txtUsername.setText(username);
+            txtPassword.setText(password);
         }
 
-        // put variable names to fields
-        txtFname.setText(fname);
-        txtLname.setText(lname);
-        txtAge.setText(age);
-        txtUsername.setText(username);
-        txtPassword.setText(password);
+//      
     }//GEN-LAST:event_JcomboSelectStudentActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         String fname = txtFname.getText().trim();
         String lname = txtLname.getText().trim();
@@ -355,9 +381,9 @@ public class EditStudent extends javax.swing.JFrame {
                 v.popup(pword_valid[1]);
             }
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         //step one : confirm
         int delete = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete student");
@@ -367,27 +393,30 @@ public class EditStudent extends javax.swing.JFrame {
             //step 2; get id
             String student_id = JcomboSelectStudent.getSelectedItem().toString();
             //create sql 
-            String delete_student_sql = "DELETE FROM `student` WHERE `Student_ID` ='"+student_id+"'";
-            
+            String delete_student_sql = "DELETE FROM `student` WHERE `Student_ID` ='" + student_id + "'";
+
             Database db = new Database();
             //delete with insert method
             boolean deleted = db.executeInsert(delete_student_sql);
-            
             //if delete success, reload the combobox
-            if(deleted == true){
+            if (deleted == true) {
                 //code for removing the item from combo box. run again
                 //acha tukafungie apo, ii kitu inakaa inataka kutukalia. sawa
-                JcomboSelectStudent.removeAllItems();
-                populateSelect();
-            }
-            else{
+                // if the content of the combobox are more than 1, toa the only one selected
+                if (JcomboSelectStudent.getItemCount() > 1) {
+                    JcomboSelectStudent.removeItemAt(JcomboSelectStudent.getSelectedIndex());
+                } //if combobox has only one item, toa zote
+                else {
+                    JcomboSelectStudent.removeAllItems();
+                }
+            } else {
                 Validator v = new Validator();
                 v.popup("Something went wrong! contact admin!");
             }
         }
 
         //tujue yes ni value gani
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -426,8 +455,8 @@ public class EditStudent extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> JcomboSelectStudent;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
