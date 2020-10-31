@@ -1,3 +1,4 @@
+
 Vipi Sir
 poa poa. nimefika apa
 
@@ -644,3 +645,62 @@ chonjo, baadae, wacha ni push
 
 
 fiti. before ulale. sai sai
+
+Buda,.
+Iza leo nmechapa.. nd
+o nmetoka kuandaa ka snack
+inaeleweka usistress. leo tunafasha ka task kadogo tu
+Chonjo
+Tunaongeza table inaitwa logs. 
+one for student, another for admin.
+>student_task,
+>admin_log
+>student_location
+>student_parent
+>guardian_details
+
+haya,. location inahitajika ya? analysis tu.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+student_task table
+id|student_id|task_id|time_taken|time|date|month|year|
+
+student_parent
+id|student_id|parent_status   [either both alive, single mum, single dad, orphaned]
+
+guardian_details
+id|student_id|relation_to_student|names|email|phone|
+
+student_location
+id|student_id|county|subcounty|wards
+
+admin_log
+id|supervisor_id|action|time|date|month|year|
+
+student_log
+id|student_id|action|time|date|month|year|
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+io tu? ee. izi tables ni zalogic yetu.
+student anafaa kuwa na parents pia, location details.
+Tutakuwa na another table. student_parents.
+tukiwa na izo tables tutaweza kufanya analysis, swali?niko rada
+
+tutengeneze table moja na wewe, alafu iyo ingine utamalizia somef other time. then i can start workin on the client side.
+you need these tables to start the client s 
+nahitaji ya student log io task table? iyo pia. task table inarecord how much time the user took akifanya a task, date na month
+student log hujaeka basi apa
+sawa, tufanye student log na parent status basi.. uko?
+niko.
+
+ukona navicat? apana... ni ya? nakumanipulate database. acha tu google how to add foreign key on phpmyadmin
+tumeweza kuweka relationship. umefollow ama tuongeze ingine?,. nmefollow
+unda admin_log nikiona.
+unda hio paernt status kwanza ndio me nikafunge. sawa. uko fiti?.. yup
+maliza izo zingine 
+tukafungie apo sawa., niulize, mbona kwa date hujatumia data type date? ndiyo isitusumbue side ya java,. ooh sawa
+.ukiweka date data-type ni kiboko untataka itutandike kama ile combobox, heheh chonjo
+si utaunda unifowardie db kwa git
+sasawa. unaweza doz, alafu kesho umalizie db, penhe utakuwa umefika by kesho nnitapapeleka na rieng ndo usomee exams
+shwari,. client unaanza kesho? sato. kesho nitakuwa held upfiti.. tunameet lakini?  lazima bazu
+fiti basi, kesho, doz poa budaa, nawe pia
