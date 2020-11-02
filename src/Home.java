@@ -1,5 +1,8 @@
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
@@ -23,6 +26,8 @@ public class Home extends javax.swing.JFrame {
         setSize(1350, 700);
         setLocationRelativeTo(null);
         getTask();
+        getUsers();
+        getStudents();
     }
 
  
@@ -41,6 +46,36 @@ public class Home extends javax.swing.JFrame {
             result = 0;
         }
         total_tasks.setText("Total Tasks : "+result);
+    }
+    public void getUsers(){
+        Database db = new Database();
+        int result = 0;
+        String sql = "SELECT * FROM `supervisor`";
+        ResultSet rs = db.executeSelect(sql);
+        try {
+            while (rs.next()){
+                result++;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            result = 0;
+        }
+        total_users.setText("Total users :"+result);
+    }
+    public void getStudents(){
+        Database db = new Database();
+        int result = 0;
+        String sql = "SELECT * FROM `student`";
+        ResultSet rs = db.executeSelect(sql);
+        try {
+            while(rs.next()){
+                result++;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            result = 0;
+        }
+        total_students.setText("Total Students :"+result);
     }
 
     /**
@@ -61,11 +96,11 @@ public class Home extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         userPanel = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        total_users = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         studentPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        total_students = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         studentPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -120,9 +155,9 @@ public class Home extends javax.swing.JFrame {
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/users/User_group_Icon_128.png"))); // NOI18N
         userPanel.add(jLabel14, java.awt.BorderLayout.CENTER);
 
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Total Users : 10");
-        userPanel.add(jLabel15, java.awt.BorderLayout.PAGE_END);
+        total_users.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        total_users.setText("Total Users : 10");
+        userPanel.add(total_users, java.awt.BorderLayout.PAGE_END);
 
         jLabel16.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -138,9 +173,9 @@ public class Home extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/users/User_Group_Icon_128.png"))); // NOI18N
         studentPanel.add(jLabel3, java.awt.BorderLayout.CENTER);
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Total Students : 10");
-        studentPanel.add(jLabel4, java.awt.BorderLayout.PAGE_END);
+        total_students.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        total_students.setText("Total Students : 10");
+        studentPanel.add(total_students, java.awt.BorderLayout.PAGE_END);
 
         jLabel17.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -382,12 +417,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
@@ -408,7 +441,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel studentPanel;
     private javax.swing.JPanel studentPanel1;
     private javax.swing.JPanel taskPanel;
+    private javax.swing.JLabel total_students;
     private javax.swing.JLabel total_tasks;
+    private javax.swing.JLabel total_users;
     private javax.swing.JPanel userPanel;
     // End of variables declaration//GEN-END:variables
 }

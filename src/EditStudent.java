@@ -401,7 +401,6 @@ public class EditStudent extends javax.swing.JFrame {
             //if delete success, reload the combobox
             if (deleted == true) {
                 //code for removing the item from combo box. run again
-                //acha tukafungie apo, ii kitu inakaa inataka kutukalia. sawa
                 // if the content of the combobox are more than 1, toa the only one selected
                 if (JcomboSelectStudent.getItemCount() > 1) {
                     JcomboSelectStudent.removeItemAt(JcomboSelectStudent.getSelectedIndex());

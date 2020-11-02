@@ -49,7 +49,7 @@ public class EditTasks extends javax.swing.JFrame {
         txtGraphic = new javax.swing.JTextField();
         txtTaskName = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -99,8 +99,13 @@ public class EditTasks extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setText("Delete");
+        btnDelete.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton4.setText("Exit");
@@ -133,7 +138,7 @@ public class EditTasks extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtGraphic))))
@@ -157,7 +162,7 @@ public class EditTasks extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2)
+                    .addComponent(btnDelete)
                     .addComponent(jButton4))
                 .addGap(54, 54, 54))
         );
@@ -298,6 +303,27 @@ public class EditTasks extends javax.swing.JFrame {
         txtGraphic.setText(graphic);
     }//GEN-LAST:event_JcomboSelectTaskActionPerformed
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int delete = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete Task?");
+        if (delete == 0){
+            String task_id = JcomboSelectTask.getSelectedItem().toString();
+            String delete_task_sql = "DELETE FROM `tasks` WHERE `Task_ID` = '"+task_id+"'";
+            Database db = new Database();
+            boolean deleted = db.executeInsert(delete_task_sql);
+            if(deleted == true){
+                if(JcomboSelectTask.getItemCount() > 1){
+                    JcomboSelectTask.removeItemAt(JcomboSelectTask.getSelectedIndex());
+                }else
+                    JcomboSelectTask.removeAllItems();
+            }else{
+                Validator v = new Validator();
+                v.popup("Something Went Wrong, Contact System Admin!");
+            }
+            
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -335,8 +361,8 @@ public class EditTasks extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> JcomboSelectTask;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
