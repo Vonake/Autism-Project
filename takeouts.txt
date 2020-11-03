@@ -688,6 +688,8 @@ tukiwa na izo tables tutaweza kufanya analysis, swali?niko rada
 
 tutengeneze table moja na wewe, alafu iyo ingine utamalizia somef other time. then i can start workin on the client side.
 you need these tables to start the client s 
+
+
 nahitaji ya student log io task table? iyo pia. task table inarecord how much time the user took akifanya a task, date na month
 student log hujaeka basi apa
 sawa, tufanye student log na parent status basi.. uko?
@@ -704,3 +706,129 @@ si utaunda unifowardie db kwa git
 sasawa. unaweza doz, alafu kesho umalizie db, penhe utakuwa umefika by kesho nnitapapeleka na rieng ndo usomee exams
 shwari,. client unaanza kesho? sato. kesho nitakuwa held upfiti.. tunameet lakini?  lazima bazu
 fiti basi, kesho, doz poa budaa, nawe pia
+
+
+Yoh!! nimefika uku, uko area?
+
+tuko wapi?
+umefungua DBy
+ya pili ikona content
+nemipaste kwa src basi
+
+fiti. Fungua projo nione penye tulifika.
+
+Apa ndo tunaongeza information ya parents.
+>student information
+>student_location
+>guardian_details
+> student_parent
+
+Alafu tutaongeza this information here,
+tuko pamoja?  ee niko'
+
+uko area
+niko but siradi kenye inaendelea
+Tuntaka kuweka tabs za hizi info, sasa inatugonga coz inakuwa tricky tuongeza tab.
+. step 1 : Copy content ya form yetu. we do not want to loose it! it is copied.
+-step two, add a tab pane = done
+ = step 3. Rudisha form. imepotea! kwanza ikae apo tutaitoa, bado uko na mimi ama nakupoteza?niko
+fiti
+
+step 4. rename tab name
+
+step 5. Add another tab.
+
+step 6. rename tab
+
+ongeza izo tabszingine mbili.
+ulikuwa unachangia jina wapi?
+correct izo zingine alafu urun.
+ update haidu?
+pia exit
+ nimefanya recovery, netbeans huweka history ya code . sasa nimepull tu code tulikuwa tumepoteza
+tumemaliza recovery. sijaelwa mbona code imepotea, ama ni kwasababu presentation iko karibu? nashuku izo copy paste,
+inaweza kuwa reason, actually iyo ndo reason,
+tuendelee. nimefinyaa cancel ikafunga teamviewer yangu
+this is your database! izo lines ni relationships. ntadesign student location alafu udesing izo zingine, tuko pamoja?
+poa.
+i need county, subcounty,ward.
+
+kazi kwako sasa.
+ipee 5 mins nikarange supper jo, naskia ubao
+
+wazi. next ni validation.
+Tukisave data we always select student id from combobox, okay?
+tutaanza na guardian details. utaweza kufanya validation?yup.tuchangamke sai nikiona. then apa, good desing, but we use a buttongroup ndo tusiselect more than one,
+tutaresearch on how to do it kwanza tuchangamkie validation.
+hio naeza fanya acha ikuwe assignment ndio tusonge, sasa next ni kuweka iyo data into the database. tufanye ya guardian peke, alafu iyo ingine ikuwe assignment.
+Next task ni reportings za tasks done na analysis.safi.
+dakika ngapi validation?
+nakupea 7min, tuanza kazi
+hiyo content iko kwa fields itakusumbua.
+laxima ueke txt?  txt si must, but inatusaidia kujua variable name rahisi,
+Iko chonjo
+,
+kabisa. phone validatoer yako inakubali letters?
+sithani tulieka phone validation, nitaeka kaa assignment
+fiti.
+step 2. insert data to database.
+kwanza tunacheck if student akona guardian information. if akona guardian information, we update!
+if hana guardian information, we insert!, tuko pamoja? shwari.. kitoweo imeiva, nkutumie picha
+haha, dishi kwanza, ukimaliza nistue,  bado niko on mpaka monin;
+apana tumalize tu, ama tuko far, atleast ipoe kiasi, kula kwanza, na usikule kama slay queen ati ukae apo 2hours
+aii buda food ni moto, kabla ipoe ni kama 20 mins,
+tuendelee basi.
+step 2a. check if student has guardian information. Utaweza?
+nikupatie hint? yup, akili haigongi. tulitengeneze method kwa dtabase. inachukua sql, alafu inakwambia if 
+kuna data ama hakuna. use this method.
+
+buda changamka. 
+step 1. create a select sql from table student guardian where student id = provided
+yajia ngoma, imekubali, ukiona ivo presentation iko near,
+hehe,tuendelee.
+weka student id variable apo,
+
+use the duplicate method tujue if kuna such data.
+
+if true, we update. if false, we insert.
+weka if else.
+
+generate the sqls. inaleta error coz akuna student id, sql iko sawa, copy it,
+copy sql, buda naona unastruggle sana,
+
+execute insert. show success. test.
+
+next tunataka when the combo box changes, autoload guardian information.
+step 1. make sthe select sql.
+food bado haipoi?heeh acha nidish,. 5 mins. poa. uko?
+niko,tuendelee?
+next ni delete. generate sql delete guardian. hio inaeza fanywa kama assignment. sithani iko na any diff from delete
+zingine. Kabisa. So far tumeachive sana. sasa we only need to hide this.
+
+bos hukufanya ya kuweka supervisor kwa menu ya homepage.
+aah ile ilinitoka jo,
+si tuiongeze kwa list,poa
+.
+sotuendelee ama unadai doz?
+tumebakisha nini?
+Kudesign reports na implementation yake. but logic tutaweka nikifanya client side. si basi wewe fanya client 
+
+.
+after hio yote tumebakisha nini? nikifanya client tuwekw reports ni hivyo. hivyo asin project inaisha?ee. reports ndiyo 50% reason tunafnya the autism. but si chache, logic mob itakuwa hii side.
+inaeza fanyika na siku moja? mbili. koz bado kuna graphs. so tukijipea kesho kila mtu amalize assignment yake, weno tunaeza chapa kama nusu ya logic?
+ee, w
+enSi obas tih ur na friday ni logic, friday itakuwa tu kutafuta makosa. then sato tutengeneze installable. fiti,.
+basi kesho changamkia client me nifanye izo vitu pending tume.ba
+kisafiti. sasa unaweza dishi kama slay queen,, dishi nlishaa maliza,. sai ni kuzima
+doz poabaz
+u, tupatane weno, na staki excuses ati ooo, sijamaliza coz nilikesha sana monday,. wewe ndio naona ukiniangusha na hadithi za stima apa na mashughuli,
+ai, buda na nimekesha na wewe? lakini bado hujaanza client,. ulikuwa uchangamkie between classes za bazeng ivo ndo ulisema,
+client nitamaliza na iyo tuesday, then weno tumalize iyo ingine. Nikikesha kesho nitakuwa niko kumaliza. chonjo basi
+tuchangamke
+fiti. bado time iko na sisi.
+yea but ineza fly juu exam ni friday,
+na umesomea exams?nasomea moro ya friday,.'
+fiti. basi weno sitakuweka sana. haina was,. tu,taskuma, lazma ugraduate hii mwaka.
+maze,. muhimu
+doz poa bazu chonjo
+

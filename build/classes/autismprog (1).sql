@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2020 at 12:15 PM
+-- Generation Time: Nov 02, 2020 at 08:35 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -74,7 +74,6 @@ CREATE TABLE `student` (
 
 INSERT INTO `student` (`Student_ID`, `First_Name`, `Last_Name`, `Age`, `UserName`, `Password`) VALUES
 (3, 'Kelvin', 'Kamau', 2, 'kamaa', 'kijabe'),
-(5, 'Musa', 'Musa', 123, 'test1', 'wqwert'),
 (7, 'Maureen', 'Nthenya', 23, 'maureen', 'maureen');
 
 -- --------------------------------------------------------
@@ -183,9 +182,7 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`Task_ID`, `Task_Name`, `Description`, `Graphic`) VALUES
-(2, 'Handwashing', 'we are testing the insert method', 'No Graphic config yet test'),
-(3, 'Hand Washing', 'how to wash your hands', 'image erer'),
-(4, 'Brush your teath', 'Brush your teath', 'graphic');
+(2, 'Handwashing', 'we are testing the insert method', 'No Graphic config yet test');
 
 --
 -- Indexes for dumped tables
