@@ -832,3 +832,65 @@ fiti. basi weno sitakuweka sana. haina was,. tu,taskuma, lazma ugraduate hii mwa
 maze,. muhimu
 doz poa bazu chonjo
 
+Tasks
+supervisor kwa menu ya homepage
+Delete guardian/done/removes student details too after refresh
+Phone Validator
+Student Location
+Parent Status
+
+kiasi nitafute ile error
+buda apa code unafichua aje?
+uko?
+
+niko, ni ka braket kalikuwa knamiss,
+waaah./ ii kitu noma
+
+io option umeeka ya revert previous ni kama kureset?ee, kuna kitu imehepa?
+acha nirun tucheki asha xxamp
+BUDA
+apo sielewi sasa noma ni ipi..
+HAHA, isue iko apo kwa brackets, kuna moja haujafunga poa, acha tuitafute,
+umeona kwenye error iko? yup
+okay, thats it
+iyo tu? na menu ya kuweka stats? ati reports,haikuwa kwa tasks bana, sawa sawa, all is wel.
+ but nimenote brakets zinakusumbua kiasi, 
+yea maze, izo nitalearn the hard way
+alafu kwa delete guardian, inaenda hadi na stude
+umecheki? nimeona, 
+apo sikufikiria maze
+iko sawa
+gkuna kitu ingine inafaa niongeze?
+ee, sasa utaongeza tables tatu peke, 
+~~~~~~~~~~~~~~~
+county
+~~~~~~~~~~~~~~~
+|id|name|
+
+~~~~~~~~~~~~~
+subcounty
+~~~~~~~~~~~~~
+|id|county_id|name
+
+~~~~~~~~~~~~~
+ward
+~~~~~~~~~~~~~
+|id|subcounty_id|name
+
+alafu uweke relationships, itatusaidia tukiweka reports.
+sawa na kwa system siongezi io table ya reports?
+Kwa system inaweka a new jframe inaitwa reports,
+Then uongeze link from home,
+uiwache blank coz apo ndo tutadesign all our info
+tunasave student gender kweli? hakuna place tumecapture,, labda tuondeze kwa student details,
+tuongeze iyo kwa to - to list ya leo? poa,. 
+safi, jioni tutaanza on reports. una swali? apana,. acha nifanye izi tasks najua kuna zenye zitasumbua
+changamkia, penye utakwama tutapasort jioni .poa, nawe changamkia io part yako
+nataki nimalize by jioni coz tutaitumia kwa reports. fiti,
+Pending Tasks
+Gender - Done
+Tables add county - Done
+Jframe reports + link - Done
+Student Location
+Parent Status
+Phone Validator

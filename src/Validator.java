@@ -1,5 +1,6 @@
 
 import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 
 public class Validator{
     //this is the constructor. aka entry point
@@ -119,6 +120,11 @@ public class Validator{
         array[0] = result;
         array[1] = message;
         return array;
+    }
+    public void Exit(){
+        Home h = new Home();
+        h.setVisible(true);
+        //this.dispose();
     }
     
     //method for popup coz i am lazy to type
