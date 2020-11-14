@@ -18,6 +18,11 @@ public class Database {
     String USER = "root";
     String PASSWORD = "";
     String DB_URL = "jdbc:mysql://localhost/autismprog";
+    String ssl_sql = "?autoReconnect=true&useSSL=false";
+    //this is for windows
+//    String path = "C://wamp/www/mutpics/";
+    //this one is for unix.
+    public static final String path = "/var/www/html/java/";
 
     public Database() {
 
@@ -133,14 +138,14 @@ public class Database {
         
 //        executeInsert itatumika kuadd suervisor,kuadd student,task,etc
 //          test inserting supervisor - -hatujacall io method kwa supervisor ama? bado. naona tuko pamoja. changamka
-//        Connection c = d.Connect();
-//        boolean login = d.Login("user", "password");
-//
-//        if (login == true) {
-//            System.out.println("Login successful!");
-//        } else {
-//            System.out.println("login failed!");
-//        }
+        Connection c = d.Connect();
+        boolean login = d.Login("user", "password");
+
+        if (login == true) {
+            System.out.println("Login successful!");
+        } else {
+            System.out.println("login failed!");
+        }
         /**
          *
          * System.out.println("Connection : " + c); String sql = "SELECT

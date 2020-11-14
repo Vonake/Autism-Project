@@ -1,5 +1,20 @@
 
-import javax.swing.JFrame;
+import java.awt.Cursor;
+import java.awt.Image;
+import java.io.File;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import javax.imageio.ImageIO;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.Timestamp;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,12 +30,19 @@ public class TaskDetails extends javax.swing.JFrame {
     /**
      * Creates new form TaskDetails
      */
+    String filename = "";
+    byte[] person_image = null;
+    Image img101 = null;
+    BufferedImage image = null;
+    File f = null;
+    Validator v = new Validator();
+
     public TaskDetails() {
         initComponents();
         setTitle("Create Task");
         setLocationRelativeTo(null);
         setResizable(false);
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.JFrame.DO_NOTHING_ON_CLOSE);
     }
 
     /**
@@ -32,43 +54,50 @@ public class TaskDetails extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        lblimage = new javax.swing.JLabel();
+        btnbrowse = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        txt_description = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txt_graphic = new javax.swing.JTextField();
         txt_taskName = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txt_description = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Task Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gill Sans MT", 3, 11), new java.awt.Color(0, 204, 255))); // NOI18N
+        jPanel2.setPreferredSize(new java.awt.Dimension(300, 515));
+        jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Graphic");
+        lblimage.setBorder(javax.swing.BorderFactory.createTitledBorder("A preview of graphic"));
+        jPanel2.add(lblimage, java.awt.BorderLayout.CENTER);
+
+        btnbrowse.setText("Browse Graphic");
+        btnbrowse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbrowseActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnbrowse, java.awt.BorderLayout.PAGE_END);
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Selected Graphic");
+        jPanel2.add(jLabel4, java.awt.BorderLayout.PAGE_START);
+
+        getContentPane().add(jPanel2, java.awt.BorderLayout.EAST);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Task Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gill Sans MT", 3, 11), new java.awt.Color(0, 204, 255))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Task Name");
 
-        txt_description.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txt_description.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_descriptionActionPerformed(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Description");
-
-        txt_graphic.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txt_graphic.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_graphicActionPerformed(evt);
-            }
-        });
 
         txt_taskName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -91,6 +120,11 @@ public class TaskDetails extends javax.swing.JFrame {
             }
         });
 
+        txt_description.setColumns(20);
+        txt_description.setLineWrap(true);
+        txt_description.setRows(5);
+        jScrollPane1.setViewportView(txt_description);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -99,43 +133,39 @@ public class TaskDetails extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_graphic))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_taskName))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_description, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_taskName, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1)))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                     .addComponent(txt_taskName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                    .addComponent(txt_description))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_graphic)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                        .addGap(50, 50, 50))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addGap(59, 59, 59)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -143,33 +173,15 @@ public class TaskDetails extends javax.swing.JFrame {
                 .addGap(54, 54, 54))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_descriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_descriptionActionPerformed
+    private void btnbrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbrowseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_descriptionActionPerformed
-
-    private void txt_graphicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_graphicActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_graphicActionPerformed
+        getimage();
+    }//GEN-LAST:event_btnbrowseActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -182,13 +194,11 @@ public class TaskDetails extends javax.swing.JFrame {
         // TODO add your handling code here:
         String task_name = txt_taskName.getText().trim();
         String description = txt_description.getText().trim();
-        String graphic = txt_graphic.getText().trim();
-
-        Validator v = new Validator();
+        String graphic = filename;
 
         String[] tname_valid = v.nameValidator(task_name, "Task Name");
         String[] desc_valid = v.nameValidator(description, "Brief Description");
-        String[] graphic_valid = v.nameValidator(graphic, "Image");
+        String[] graphic_valid = v.nameValidator(filename, "Graphic");
 
         if (tname_valid[0] == "true" && desc_valid[0] == "true" && graphic_valid[0] == "true") {
             Database db = new Database();
@@ -197,20 +207,20 @@ public class TaskDetails extends javax.swing.JFrame {
                     + "    `Description`,"
                     + "    `Graphic`"
                     + ")"
-                    + "VALUES('"+task_name+"','"+description+"','"+graphic+"')";
-            String check_task_sql = "SELECT * FROM `tasks` WHERE `Task_Name`='"+task_name+"'";
+                    + "VALUES('" + task_name + "','" + description + "','" + saveImageToServer() + "')";
+            String check_task_sql = "SELECT * FROM `tasks` WHERE `Task_Name`='" + task_name + "'";
             boolean taskname_exists = db.checkDuplicate(check_task_sql);
-            if(taskname_exists == true){
-                v.popup("Task Name "+task_name+" Already Exists!");
-            }
-            else{
+            if (taskname_exists == true) {
+                v.popup("Task Name " + task_name + " Already Exists!");
+            } else {
                 boolean add_task = db.executeInsert(add_task_sql);
-                if(add_task == true){
-                v.popup("Task Saved Successfully!");
-            }
-            else{
-                v.popup("Failed!");
-            }
+                if (add_task == true) {
+                    v.popup("Task Saved Successfully!");
+                    filename = "";
+                    lblimage.setIcon(null);
+                } else {
+                    v.popup("Failed!");
+                }
             }
         } else {
             if (tname_valid[0] == "false") {
@@ -222,6 +232,7 @@ public class TaskDetails extends javax.swing.JFrame {
             if (graphic_valid[0] == "false") {
                 v.popup(graphic_valid[1]);
             }
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -260,16 +271,77 @@ public class TaskDetails extends javax.swing.JFrame {
         });
     }
 
+    public void getimage() {
+
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        File f = chooser.getSelectedFile();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        filename = f.getAbsolutePath();
+
+        Object ob = (Object) filename;
+
+        if (ob == null) {
+
+        } else {
+            ImageIcon format = new ImageIcon(new ImageIcon(filename).getImage().getScaledInstance(lblimage.getWidth(), lblimage.getHeight(), Image.SCALE_DEFAULT));
+            lblimage.setIcon(format);
+            try {
+                File image = new File(filename);
+                FileInputStream fix = new FileInputStream(image);
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                byte[] buf = new byte[1024];
+                for (int number; (number = fix.read(buf)) != -1;) {
+                    bos.write(buf, 0, number);
+                }
+                person_image = bos.toByteArray();
+
+            } catch (Exception sx) {
+                System.err.println(sx);
+            }
+        }
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }
+
+    public String saveImageToServer() {
+        String url = null;
+        try {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            String extension = filename.substring(filename.lastIndexOf(".") + 1);
+            String pic_name = new Timestamp(System.currentTimeMillis()) + "." + extension;
+            url = pic_name;
+            InputStream input = new FileInputStream(filename);
+            OutputStream output = new FileOutputStream((Database.path + pic_name));
+            byte[] buf = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = input.read(buf)) > 0) {
+                output.write(buf, 0, bytesRead);
+            }
+            input.close();
+            output.close();
+
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
+        } catch (Exception ex) {
+            new Validator().popup(ex);
+        }
+        return url;
+
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnbrowse;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txt_description;
-    private javax.swing.JTextField txt_graphic;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblimage;
+    private javax.swing.JTextArea txt_description;
     private javax.swing.JTextField txt_taskName;
     // End of variables declaration//GEN-END:variables
 }

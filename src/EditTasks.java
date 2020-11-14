@@ -1,10 +1,22 @@
 
+import java.awt.Cursor;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 
 
 /*
@@ -21,6 +33,13 @@ public class EditTasks extends javax.swing.JFrame {
     /**
      * Creates new form EditTasks
      */
+    String filename = "";
+    String url = "";
+    byte[] person_image = null;
+    Image img101 = null;
+    BufferedImage image = null;
+    File f = null;
+
     public EditTasks() {
         initComponents();
         setLocationRelativeTo(null);
@@ -42,15 +61,18 @@ public class EditTasks extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         JcomboSelectTask = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtDescription = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtGraphic = new javax.swing.JTextField();
         txtTaskName = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtDescription = new javax.swing.JTextArea();
+        jPanel2 = new javax.swing.JPanel();
+        lblimage = new javax.swing.JLabel();
+        btnbrowse = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,28 +88,11 @@ public class EditTasks extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Task Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gill Sans MT", 3, 11), new java.awt.Color(0, 204, 255))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Graphic");
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Task Name");
 
-        txtDescription.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtDescription.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescriptionActionPerformed(evt);
-            }
-        });
-
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Description");
-
-        txtGraphic.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtGraphic.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtGraphicActionPerformed(evt);
-            }
-        });
 
         txtTaskName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -115,6 +120,11 @@ public class EditTasks extends javax.swing.JFrame {
             }
         });
 
+        txtDescription.setColumns(20);
+        txtDescription.setLineWrap(true);
+        txtDescription.setRows(5);
+        jScrollPane1.setViewportView(txtDescription);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -122,66 +132,79 @@ public class EditTasks extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addComponent(txtTaskName, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(87, 87, 87)
+                        .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTaskName))
+                        .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtGraphic))))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtTaskName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                    .addComponent(txtDescription))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtGraphic)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(txtTaskName, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(btnDelete)
                     .addComponent(jButton4))
-                .addGap(54, 54, 54))
+                .addGap(19, 19, 19))
         );
+
+        jPanel2.setPreferredSize(new java.awt.Dimension(300, 515));
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        lblimage.setBorder(javax.swing.BorderFactory.createTitledBorder("A preview of graphic"));
+        jPanel2.add(lblimage, java.awt.BorderLayout.CENTER);
+
+        btnbrowse.setText("Browse Graphic");
+        btnbrowse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbrowseActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnbrowse, java.awt.BorderLayout.PAGE_END);
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Selected Graphic");
+        jPanel2.add(jLabel5, java.awt.BorderLayout.PAGE_START);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JcomboSelectTask, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(68, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGap(91, 91, 91)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JcomboSelectTask, 0, 292, Short.MAX_VALUE)
+                .addContainerGap(164, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(373, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,21 +213,17 @@ public class EditTasks extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(JcomboSelectTask, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(60, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(33, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescriptionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescriptionActionPerformed
-
-    private void txtGraphicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGraphicActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtGraphicActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -230,26 +249,26 @@ public class EditTasks extends javax.swing.JFrame {
         // TODO add your handling code here:
         String tname = txtTaskName.getText().trim();
         String desc = txtDescription.getText().trim();
-        String graphic = txtGraphic.getText().trim();
+        String graphic = null;//txtGraphic.getText().trim();
         String taskID = JcomboSelectTask.getSelectedItem().toString();
 
         Validator v = new Validator();
 
         String[] tname_valid = v.nameValidator(tname, "Task Name");
         String[] desc_valid = v.nameValidator(desc, "Description");
-        String[] graphic_valid = v.nameValidator(graphic, "Image");
+//        String[] graphic_valid = v.nameValidator(graphic, "Image");
 
-        if (tname_valid[0] == "true" && desc_valid[0] == "true" && graphic_valid[0] == "true") {
+        if (tname_valid[0] == "true" && desc_valid[0] == "true") {
             Database db = new Database();
             String update_task_sql = "UPDATE"
                     + "    `tasks`"
                     + "SET"
                     + "    `Task_Name` = '" + tname + "',"
                     + "    `Description` ='" + desc + "',"
-                    + "    `Graphic` = '" + graphic + "'"
+                    + "    `Graphic` = '" + saveImageToServer() + "'"
                     + "WHERE"
-                    + "    `Task_ID` ='"+taskID+"'";
-            String check_task_sql = "SELECT * FROM `tasks` WHERE `Task_Name` = '"+tname+"' and Task_ID <> '"+taskID+"'";
+                    + "    `Task_ID` ='" + taskID + "'";
+            String check_task_sql = "SELECT * FROM `tasks` WHERE `Task_Name` = '" + tname + "' and Task_ID <> '" + taskID + "'";
             boolean exists = db.checkDuplicate(check_task_sql);
             if (exists == true) {
                 v.popup("Task name " + tname + " already exists");
@@ -268,18 +287,12 @@ public class EditTasks extends javax.swing.JFrame {
             if (desc_valid[0] == "false") {
                 v.popup(desc_valid[1]);
             }
-            if (graphic_valid[0] == "false") {
-                v.popup(graphic_valid[1]);
-            }
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void JcomboSelectTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcomboSelectTaskActionPerformed
-        // TODO add your handling code here:
-//        Validator v = new Validator();
-//        v.popup("Item at index : "+this.JcomboSelectTask.getItemAt(this.JcomboSelectTask.getSelectedIndex()));
-//        v.popup("Item idex : "+this.JcomboSelectTask.getSelectedIndex());
-        
+     
         String select_task_id = JcomboSelectTask.getSelectedItem().toString();
         String task_details = "SELECT * FROM `tasks` WHERE `Task_ID`='" + select_task_id + "'";
         String tname = null;
@@ -300,29 +313,100 @@ public class EditTasks extends javax.swing.JFrame {
         }
         txtTaskName.setText(tname);
         txtDescription.setText(desc);
-        txtGraphic.setText(graphic);
+        url = graphic;
+//        new Validator().popup(url);
+        filename = Database.path + graphic;
+        ImageIcon format = new ImageIcon(new ImageIcon(Database.path + url).getImage().getScaledInstance(lblimage.getWidth(), lblimage.getHeight(), Image.SCALE_DEFAULT));
+        lblimage.setIcon(format);
     }//GEN-LAST:event_JcomboSelectTaskActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         int delete = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete Task?");
-        if (delete == 0){
+        if (delete == 0) {
             String task_id = JcomboSelectTask.getSelectedItem().toString();
-            String delete_task_sql = "DELETE FROM `tasks` WHERE `Task_ID` = '"+task_id+"'";
+            String delete_task_sql = "DELETE FROM `tasks` WHERE `Task_ID` = '" + task_id + "'";
             Database db = new Database();
             boolean deleted = db.executeInsert(delete_task_sql);
-            if(deleted == true){
-                if(JcomboSelectTask.getItemCount() > 1){
+            if (deleted == true) {
+                if (JcomboSelectTask.getItemCount() > 1) {
                     JcomboSelectTask.removeItemAt(JcomboSelectTask.getSelectedIndex());
-                }else
+                } else {
                     JcomboSelectTask.removeAllItems();
-            }else{
+                }
+            } else {
                 Validator v = new Validator();
                 v.popup("Something Went Wrong, Contact System Admin!");
             }
-            
+
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnbrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbrowseActionPerformed
+        // TODO add your handling code here:
+        getimage();
+    }//GEN-LAST:event_btnbrowseActionPerformed
+    public void getimage() {
+
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        File f = chooser.getSelectedFile();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        filename = f.getAbsolutePath();
+
+        Object ob = (Object) filename;
+
+        if (ob == null) {
+
+        } else {
+            ImageIcon format = new ImageIcon(new ImageIcon(filename).getImage().getScaledInstance(lblimage.getWidth(), lblimage.getHeight(), Image.SCALE_DEFAULT));
+            lblimage.setIcon(format);
+            try {
+                File image = new File(filename);
+                FileInputStream fix = new FileInputStream(image);
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                byte[] buf = new byte[1024];
+                for (int number; (number = fix.read(buf)) != -1;) {
+                    bos.write(buf, 0, number);
+                }
+                person_image = bos.toByteArray();
+
+            } catch (Exception sx) {
+                System.err.println(sx);
+            }
+        }
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }
+
+    public String saveImageToServer() {
+        String url = null;
+        if (filename.equals(Database.path + this.url)) {
+//            new Validator().popup("Image unchanged");
+        } else {
+            try {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+//                new Validator().popup(filename);
+//                new Validator().popup(Database.path + this.url);
+                InputStream input = new FileInputStream(filename);
+                OutputStream output = new FileOutputStream((Database.path + this.url));
+                byte[] buf = new byte[1024];
+                int bytesRead;
+                while ((bytesRead = input.read(buf)) > 0) {
+                    output.write(buf, 0, bytesRead);
+                }
+                input.close();
+                output.close();
+                url = Database.path + this.url;
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
+            } catch (Exception ex) {
+                new Validator().popup(ex);
+                ex.printStackTrace();
+            }
+        }
+        return this.url;
+
+    }
 
     /**
      * @param args the command line arguments
@@ -362,15 +446,18 @@ public class EditTasks extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> JcomboSelectTask;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnbrowse;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtDescription;
-    private javax.swing.JTextField txtGraphic;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblimage;
+    private javax.swing.JTextArea txtDescription;
     private javax.swing.JTextField txtTaskName;
     // End of variables declaration//GEN-END:variables
 }
