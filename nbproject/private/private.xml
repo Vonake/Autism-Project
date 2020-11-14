@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/home/kario/NetBeansProjects/Autism-Project/src/StudentLogin.java</file>
             <file>file:/home/kario/NetBeansProjects/Autism-Project/src/TaskDetails.java</file>
             <file>file:/home/kario/NetBeansProjects/Autism-Project/src/EditTasks.java</file>
@@ -10,6 +11,13 @@
             <file>file:/home/kario/NetBeansProjects/Autism-Project/src/StudentTask.java</file>
             <file>file:/home/kario/NetBeansProjects/Autism-Project/src/StudentHome.java</file>
             <file>file:/home/kario/NetBeansProjects/Autism-Project/src/Home.java</file>
+=======
+            <file>file:/C:/Users/hp/Desktop/JAva/Autism-Project/src/Reports.java</file>
+            <file>file:/C:/Users/hp/Desktop/JAva/Autism-Project/src/EditStudent.java</file>
+            <file>file:/C:/Users/hp/Desktop/JAva/Autism-Project/src/Validator.java</file>
+            <file>file:/C:/Users/hp/Desktop/JAva/Autism-Project/src/Home.java</file>
+            <file>file:/C:/Users/hp/Desktop/JAva/Autism-Project/src/EditSupervisor.java</file>
+>>>>>>> 203ee352a071d600c7438de9fa211607c9d3782b
         </group>
     </open-files>
 </project-private>
