@@ -98,6 +98,10 @@ public class Home extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         total_users = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        studentPanel2 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        total_students1 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         studentPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         total_students = new javax.swing.JLabel();
@@ -106,6 +110,7 @@ public class Home extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -169,6 +174,24 @@ public class Home extends javax.swing.JFrame {
 
         dashboardPanel.add(userPanel);
 
+        studentPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        studentPanel2.setLayout(new java.awt.BorderLayout());
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/users/User_Group_Icon_128.png"))); // NOI18N
+        studentPanel2.add(jLabel4, java.awt.BorderLayout.CENTER);
+
+        total_students1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        total_students1.setText("Total Students : 10");
+        studentPanel2.add(total_students1, java.awt.BorderLayout.PAGE_END);
+
+        jLabel19.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel19.setText("Students");
+        studentPanel2.add(jLabel19, java.awt.BorderLayout.PAGE_START);
+
+        dashboardPanel.add(studentPanel2);
+
         studentPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         studentPanel.setLayout(new java.awt.BorderLayout());
 
@@ -177,12 +200,12 @@ public class Home extends javax.swing.JFrame {
         studentPanel.add(jLabel3, java.awt.BorderLayout.CENTER);
 
         total_students.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        total_students.setText("Total Students : 10");
+        total_students.setText("View Reports");
         studentPanel.add(total_students, java.awt.BorderLayout.PAGE_END);
 
         jLabel17.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("Students");
+        jLabel17.setText("Reports");
         studentPanel.add(jLabel17, java.awt.BorderLayout.PAGE_START);
 
         dashboardPanel.add(studentPanel);
@@ -211,6 +234,7 @@ public class Home extends javax.swing.JFrame {
         studentPanel1.add(jLabel18, java.awt.BorderLayout.PAGE_START);
 
         dashboardPanel.add(studentPanel1);
+        dashboardPanel.add(jLabel2);
 
         jSplitPane2.setRightComponent(dashboardPanel);
 
@@ -326,7 +350,7 @@ public class Home extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
+                .addComponent(jSplitPane2)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -457,7 +481,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
@@ -480,8 +507,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JPanel studentPanel;
     private javax.swing.JPanel studentPanel1;
+    private javax.swing.JPanel studentPanel2;
     private javax.swing.JPanel taskPanel;
     private javax.swing.JLabel total_students;
+    private javax.swing.JLabel total_students1;
     private javax.swing.JLabel total_tasks;
     private javax.swing.JLabel total_users;
     private javax.swing.JPanel userPanel;
